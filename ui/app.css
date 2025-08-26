@@ -2,7 +2,7 @@
 @import "daisyui/themes.css";
 @import "daisyui/theme/dim.css";
 
-@source "./**/*.{templ}";
+@source "../../**/*.{templ}";
 @plugin "daisyui";
 
 :root {
