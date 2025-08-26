@@ -1,0 +1,86 @@
+package ui
+
+templ Base(title string) {
+	<!DOCTYPE html>
+	<html lang="en" data-theme="dim">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<title>{ title }</title>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css"/>
+			<link rel="stylesheet" href="/static/style.css"/>
+		</head>
+		<body class="h-screen flex flex-col bg-base-200">
+			{ children... }
+		</body>
+	</html>
+}
+
+templ Center() {
+	<div class="hero flex-1">
+		{ children... }
+	</div>
+}
+
+templ CenterImage(image string) {
+	<div class="hero flex-1" style={ "background-image: url(" + image + ")" }>
+		{ children... }
+	</div>
+}
+
+templ Card(title, subtitle string) {
+	<div class="card w-96 bg-base-100 shadow-xl">
+		<div class="card-body">
+			<h2 class="card-title justify-center mb-2 font-fraunces text-3xl">{ title }</h2>
+			<p class="text-center text-base-content/80 mb-4">{ subtitle }</p>
+			{ children... }
+		</div>
+	</div>
+}
+
+templ PhotoCard(image, title, subtitle string) {
+	<div class="card w-96 glass shadow-xl">
+		<div class="card-body">
+			<div class="avatar justify-center mb-4 mt-4">
+				<div class="w-72 rounded-full">
+					<img src={ image }/>
+				</div>
+			</div>
+			<h2 class="card-title justify-center mb-2 text-primary-content font-fraunces text-4xl" style="font-weight: 400;">{ title }</h2>
+			<p class="text-center text-primary-content/80 mb-2 text-md">{ subtitle }</p>
+			{ children... }
+		</div>
+	</div>
+}
+
+templ SocialLogin(key, title, href string) {
+	<a href={ href } class="btn btn-outline"><i class={ "ti", "ti-brand-"+key, "text-xl" }></i><span class="flex-1">Continue with { title }</span></a>
+}
+
+type Link struct {
+	Title string
+	Href  string
+}
+
+templ Nav(title string, links []Link) {
+	<nav class="navbar bg-base-100 shadow-sm">
+		<div class="container mx-auto flex w-240">
+			<div class="flex-1">
+				<ul class="menu menu-horizontal px-1">
+					<li><a class="btn btn-ghost text-xl" href="/">{ title }</a></li>
+				</ul>
+			</div>
+			<div class="flex-none">
+				<ul class="menu menu-horizontal px-1">
+					for _, l := range links {
+						<li><a href={ l.Href }>{ l.Title }</a></li>
+					}
+				</ul>
+			</div>
+		</div>
+	</nav>
+}
