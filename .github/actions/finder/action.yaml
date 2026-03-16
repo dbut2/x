@@ -22,4 +22,5 @@ runs:
       id: finder
       shell: bash
       run: |
-        echo "matrix=$(go run "$GITHUB_ACTION_PATH" '${{ inputs.find }}' '${{ inputs.skips }}')" >> $GITHUB_OUTPUT
+        go build -C "$GITHUB_ACTION_PATH" -o /tmp/finder .
+        echo "matrix=$(/tmp/finder '${{ inputs.find }}' '${{ inputs.skips }}')" >> $GITHUB_OUTPUT

@@ -1,0 +1,12 @@
+name: Quality (Docker)
+
+on:
+  workflow_call:
+
+jobs:
+  compose:
+    name: Docker Compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: docker compose build
