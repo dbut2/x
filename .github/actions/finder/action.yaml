@@ -1,0 +1,25 @@
+inputs:
+  find:
+    description: 'file to find'
+    required: true
+  skips:
+    description: 'directories to skip'
+    required: false
+    default: ''
+outputs:
+  matrix:
+    description: 'found directories'
+    value: ${{ steps.finder.outputs.matrix }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v6
+      with:
+        go-version-file: ${{ github.action_path }}/go.mod
+
+    - name: Discover files
+      id: finder
+      shell: bash
+      run: |
+        echo "matrix=$(go run "$GITHUB_ACTION_PATH" '${{ inputs.find }}' '${{ inputs.skips }}')" >> $GITHUB_OUTPUT
