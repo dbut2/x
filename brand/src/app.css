@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./nav.css";
+@import "./hero.css";
+@import "./section.css";
+@import "./article.css";
+@import "./prose.css";
+@import "./photo.css";
+@import "./responsive.css";
+
+@theme {
+  --color-bg:       var(--dbx-bg);
+  --color-surface:  var(--dbx-surface);
+  --color-ink:      var(--dbx-ink);
+  --color-ink-2:    var(--dbx-ink-2);
+  --color-ink-3:    var(--dbx-ink-3);
+  --color-rule:     var(--dbx-rule);
+  --color-accent:   var(--dbx-accent);
+
+  --font-sans:      var(--dbx-font-sans);
+  --font-display:   var(--dbx-font-display);
+  --font-mono:      var(--dbx-font-mono);
+
+  --breakpoint-md:  720px;
+  --breakpoint-lg:  1024px;
+}
