@@ -1,0 +1,16 @@
+{{- $name := .Site.Params.name | default "dylan butler" -}}
+{{- $parts := split $name " " -}}
+<section class="dbx-hero">
+  <h1 class="dbx-hero__name">
+    {{- range $i, $part := $parts -}}
+      <span class="dbx-hero__line">{{ $part }}{{- if eq $i (sub (len $parts) 1) -}}<span class="dbx-hero__cursor">█</span>{{- end -}}</span>
+    {{- end -}}
+  </h1>
+  <p class="dbx-hero__tag">{{ .Site.Params.description | safeHTML }}</p>
+  <nav class="dbx-hero__socials">
+    {{- range .Site.Params.socials }}
+      <a href="{{ .url }}">{{ if hasPrefix .url "mailto:" }}{{ strings.TrimPrefix "mailto:" .url }}{{ else }}{{ .name }}{{ end }}</a>
+    {{- end }}
+    <a href="{{ "/index.xml" | relURL }}">rss</a>
+  </nav>
+</section>

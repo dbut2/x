@@ -1,6 +1,6 @@
 .dbx-hero {
-  margin-top: var(--dbx-s-30);
-  margin-bottom: var(--dbx-s-35);
+  margin-top: 0;
+  margin-bottom: var(--dbx-s-16);
 }
 
 .dbx-hero__name {
@@ -35,3 +35,19 @@
 }
 
 .dbx-hero__tag b { color: var(--dbx-ink); font-weight: 600; }
+
+.dbx-hero__socials {
+  display: flex;
+  gap: var(--dbx-s-6);
+  margin-top: var(--dbx-s-6);
+  font-family: var(--dbx-font-mono);
+  font-size: var(--dbx-text-sm);
+  color: var(--dbx-ink-2);
+}
+
+.dbx-hero__socials a {
+  color: var(--dbx-ink-2);
+  transition: color var(--dbx-speed-fast);
+}
+
+.dbx-hero__socials a:hover { color: var(--dbx-accent); }

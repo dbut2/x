@@ -1,0 +1,6 @@
+module:
+  mounts:
+    - source: hugo/layouts
+      target: layouts
+    - source: hugo/static
+      target: static

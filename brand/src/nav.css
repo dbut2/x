@@ -1,60 +1,42 @@
 .dbx-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--dbx-s-5);
-  margin-bottom: var(--dbx-s-10);
+  margin-bottom: var(--dbx-s-8);
   font-family: var(--dbx-font-mono);
   font-size: var(--dbx-text-sm);
 }
 
-.dbx-path {
+.dbx-term {
   display: flex;
   align-items: baseline;
-  flex: 0 1 auto;
-  min-width: 0;
-  overflow: hidden;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
   color: var(--dbx-ink-2);
 }
 
-.dbx-path a {
+.dbx-term__ps1 { color: var(--dbx-accent); margin-right: 6px; }
+
+.dbx-term__home {
   color: var(--dbx-ink-2);
   transition: color var(--dbx-speed-fast);
 }
 
-.dbx-path a:hover { color: var(--dbx-accent); }
-.dbx-path__sep { color: var(--dbx-ink-2); }
-.dbx-path__current { color: var(--dbx-ink); }
-.dbx-path__ext { color: var(--dbx-ink-2); }
+.dbx-term__home:hover { color: var(--dbx-accent); }
 
-.dbx-topnav {
-  display: flex;
-  gap: var(--dbx-s-6);
-  flex-shrink: 0;
+.dbx-term__sep { color: var(--dbx-ink-3); }
+
+.dbx-term__seg {
   color: var(--dbx-ink-2);
-}
-
-.dbx-topnav a { transition: color var(--dbx-speed-fast); }
-.dbx-topnav a:hover, .dbx-topnav a.is-current { color: var(--dbx-accent); }
-
-.dbx-footer {
-  margin-top: var(--dbx-s-30);
-  padding-top: var(--dbx-s-5);
-  border-top: 1px solid var(--dbx-rule);
-  display: flex;
-  justify-content: space-between;
-  color: var(--dbx-ink-3);
-  font-family: var(--dbx-font-mono);
-  font-size: var(--dbx-text-xs);
-}
-
-.dbx-footer a {
-  color: var(--dbx-ink-2);
-  margin-left: var(--dbx-s-4);
   transition: color var(--dbx-speed-fast);
 }
 
-.dbx-footer a:hover { color: var(--dbx-accent); }
-.dbx-footer__prompt::before { content: "$ "; color: var(--dbx-ink-3); }
+.dbx-term__seg:hover { color: var(--dbx-accent); }
+
+.dbx-term__current { color: var(--dbx-ink); }
+.dbx-term__ext { color: var(--dbx-ink-3); }
+
+.dbx-term__cursor {
+  color: var(--dbx-ink);
+  margin-left: 2px;
+  animation: dbx-blink 1.1s infinite steps(1);
+}
