@@ -1,0 +1,34 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--dbx-bg);
+  color: var(--dbx-ink);
+  font-family: var(--dbx-font-mono);
+  font-size: var(--dbx-text-body);
+  line-height: var(--dbx-leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--dbx-accent); color: var(--dbx-bg); }
+a { color: inherit; text-decoration: none; }
+img, svg, video { display: block; max-width: 100%; }
+figure { margin: 0; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--dbx-rule);
+  margin: var(--dbx-s-8) 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.dbx-page {
+  max-width: var(--dbx-measure);
+  margin: 0 auto;
+  padding: var(--dbx-s-12) var(--dbx-s-8) var(--dbx-s-24);
+}
+
+.dbx-page--narrow {
+  max-width: var(--dbx-measure-narrow);
+}
