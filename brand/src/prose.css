@@ -76,6 +76,7 @@
 
 .dbx-prose code {
   font-family: var(--dbx-font-mono);
+  font-variant-ligatures: none;
   font-size: 0.88em;
   background: var(--dbx-surface);
   padding: 1px 5px;
@@ -114,24 +115,6 @@
   color: inherit;
 }
 
-/* Neutralize chroma syntax highlighting to monochrome */
-.dbx-prose .chroma, .dbx-prose .chroma span,
-.dbx-prose .chroma .k, .dbx-prose .chroma .kd, .dbx-prose .chroma .kn, .dbx-prose .chroma .kt,
-.dbx-prose .chroma .s, .dbx-prose .chroma .s1, .dbx-prose .chroma .s2, .dbx-prose .chroma .se,
-.dbx-prose .chroma .n, .dbx-prose .chroma .na, .dbx-prose .chroma .nb, .dbx-prose .chroma .nc,
-.dbx-prose .chroma .nd, .dbx-prose .chroma .nf, .dbx-prose .chroma .nx, .dbx-prose .chroma .nt, .dbx-prose .chroma .nv,
-.dbx-prose .chroma .m, .dbx-prose .chroma .mi, .dbx-prose .chroma .mf,
-.dbx-prose .chroma .o, .dbx-prose .chroma .ow, .dbx-prose .chroma .p,
-.dbx-prose .chroma .c, .dbx-prose .chroma .c1, .dbx-prose .chroma .cm, .dbx-prose .chroma .cp, .dbx-prose .chroma .err {
-  color: var(--dbx-ink);
-  background: transparent;
-  font-style: normal;
-}
-
-.dbx-prose .chroma .c, .dbx-prose .chroma .c1,
-.dbx-prose .chroma .cm, .dbx-prose .chroma .cp, .dbx-prose .chroma .cs {
-  color: var(--dbx-ink-3);
-}
 
 .dbx-prose blockquote {
   padding-left: var(--dbx-s-5);
