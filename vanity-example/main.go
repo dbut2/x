@@ -10,7 +10,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.Use(vanity.Middleware("github.com/dbut2/x"))
+	r.Use(vanity.Middleware("github.com/dbut2/x/vanity-example"))
 	r.GET("/", func(c *gin.Context) {
 		c.String(200, "pulsar.dbut.dev/vanity-example — append ?go-get=1 to any path to see the import metadata")
 	})
