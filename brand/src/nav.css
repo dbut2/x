@@ -14,16 +14,9 @@
   color: var(--dbx-ink-2);
 }
 
-.dbx-term__ps1 { color: var(--dbx-accent); margin-right: 6px; }
+.dbx-term__ps1 { color: var(--dbx-accent); }
 
-.dbx-term__home {
-  color: var(--dbx-ink-2);
-  transition: color var(--dbx-speed-fast);
-}
-
-.dbx-term__home:hover { color: var(--dbx-accent); }
-
-.dbx-term__sep { color: var(--dbx-ink-3); }
+.dbx-term__sep { color: var(--dbx-ink-2); }
 
 .dbx-term__seg {
   color: var(--dbx-ink-2);
@@ -33,7 +26,7 @@
 .dbx-term__seg:hover { color: var(--dbx-accent); }
 
 .dbx-term__current { color: var(--dbx-ink); }
-.dbx-term__ext { color: var(--dbx-ink-3); }
+.dbx-term__ext { color: var(--dbx-ink-2); }
 
 .dbx-term__cursor {
   color: var(--dbx-ink);

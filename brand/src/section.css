@@ -9,7 +9,6 @@
   margin-bottom: var(--dbx-s-6);
 }
 
-.dbx-section-head__marker { color: var(--dbx-rule); }
 .dbx-section-head__name { color: var(--dbx-ink); font-weight: 500; transition: color var(--dbx-speed-fast); }
 a.dbx-section-head__name:hover { color: var(--dbx-accent); }
 .dbx-section-head__line { flex: 1; height: 1px; background: var(--dbx-rule); }
