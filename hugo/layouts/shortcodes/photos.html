@@ -1,0 +1,45 @@
+{{- /*
+  Photo gallery shortcode. Wraps children (markdown images) as a grid
+  and opens a lightbox on click.
+
+    {{< photos >}}
+    ![river](river.jpg "katsura river / 18:42")
+    ![soba](soba.jpg "soba shop window")
+    {{< /photos >}}
+
+  Named params:
+    layout — "grid" (default) or "lead" (first image full-width, rest 2-col)
+
+  The rendered inner content is expected to contain one or more
+  <figure> elements (produced by the default render-image hook). This
+  shortcode does not parse or transform them — it only wraps.
+*/ -}}
+{{- $layout := default "grid" (.Get "layout") -}}
+{{- $class  := "dbx-gallery" -}}
+{{- if eq $layout "lead" }}{{ $class = printf "%s dbx-gallery--lead" $class }}{{ end -}}
+
+{{- $.Page.Store.Set "hasGallery" true -}}
+
+{{- $inner := .Inner | .Page.RenderString (dict "display" "block") -}}
+
+<div class="{{ $class }}" data-dbx-gallery>
+  {{- if eq $layout "lead" -}}
+    {{- /* split: first <figure> stands alone; wrap remainder in grid */ -}}
+    {{- $parts := split $inner "<figure" -}}
+    {{- if ge (len $parts) 3 -}}
+      {{- /* parts[0] is "" (or whitespace); parts[1] is first figure body; parts[2..] are the rest */ -}}
+      {{- printf "<figure%s" (index $parts 1) | safeHTML -}}
+      <div class="dbx-gallery__grid">
+      {{- range after 2 $parts -}}
+        {{- printf "<figure%s" . | safeHTML -}}
+      {{- end -}}
+      </div>
+    {{- else -}}
+      {{- $inner | safeHTML -}}
+    {{- end -}}
+  {{- else -}}
+    <div class="dbx-gallery__grid">
+    {{- $inner | safeHTML -}}
+    </div>
+  {{- end -}}
+</div>

@@ -3,21 +3,22 @@
 {{- $caption := .Title -}}
 {{- $page := .Page -}}
 
-{{- /* Prefer page resources (leaf bundles), fall back to external URL */ -}}
-{{- $image := $page.Resources.GetMatch $src -}}
+{{- /* Resolve bundle-relative src via page resources, else fall back. */ -}}
+{{- $href := $src -}}
+{{- with $page.Resources.GetMatch $src -}}
+  {{- $href = .RelPermalink -}}
+{{- end -}}
 
-{{- if $image -}}
+{{- /* Inline context (image inside a sentence): emit just <img> so we
+       don't produce invalid <p><figure></p> nesting. Block context
+       (image on its own line): emit a full <figure>. */ -}}
+{{- if .IsBlock -}}
 <figure>
-  <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}"{{ with $caption }} title="{{ . }}"{{ end }} loading="lazy">
+  <img src="{{ $href | safeURL }}" alt="{{ $alt }}"{{ with $caption }} title="{{ . }}"{{ end }} loading="lazy">
   {{- with $caption }}
   <figcaption>{{ . }}</figcaption>
   {{- end }}
 </figure>
 {{- else -}}
-<figure>
-  <img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{ with $caption }} title="{{ . }}"{{ end }} loading="lazy">
-  {{- with $caption }}
-  <figcaption>{{ . }}</figcaption>
-  {{- end }}
-</figure>
+<img src="{{ $href | safeURL }}" alt="{{ $alt }}"{{ with $caption }} title="{{ . }}"{{ end }} loading="lazy">
 {{- end -}}

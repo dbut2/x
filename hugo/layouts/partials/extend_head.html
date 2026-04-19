@@ -8,3 +8,11 @@
   mermaid.initialize({ startOnLoad: true, theme: 'dark' });
 </script>
 {{- end }}
+
+{{- if .Store.Get "hasAudio" }}
+<script src="{{ "/dbx-audio.js" | relURL }}" defer></script>
+{{- end }}
+
+{{- if .Store.Get "hasGallery" }}
+<script src="{{ "/dbx-gallery.js" | relURL }}" defer></script>
+{{- end }}

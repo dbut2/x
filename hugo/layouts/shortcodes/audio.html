@@ -1,0 +1,49 @@
+{{- /*
+  Audio player shortcode.
+
+    {{< audio src="voice.mp3" caption="river ride" >}}
+
+  Named params:
+    src      — required; relative to the page bundle or an absolute URL
+    caption  — optional short label (uppercase in UI)
+
+  Resolves bundle-relative src via page resources when possible.
+*/ -}}
+{{- $src     := .Get "src" -}}
+{{- $caption := .Get "caption" -}}
+
+{{- $href := $src -}}
+{{- with $.Page.Resources.GetMatch $src -}}
+  {{- $href = .RelPermalink -}}
+{{- end }}
+
+{{- /* flag the page so extend_head can load the JS exactly once */ -}}
+{{- $.Page.Store.Set "hasAudio" true -}}
+
+<figure class="dbx-audio" data-dbx-audio>
+  <button class="dbx-audio__btn" type="button" data-dbx-audio-btn aria-label="play">
+    <span class="dbx-audio__glyph dbx-audio__glyph--play" data-dbx-audio-glyph></span>
+  </button>
+  <div class="dbx-audio__body dbx-audio__chrome">
+    <div class="dbx-audio__meta">
+      {{- with $caption }}
+      <span class="dbx-audio__label">{{ . }}</span>
+      {{- else }}
+      <span class="dbx-audio__label">voice note</span>
+      {{- end }}
+      <span class="dbx-audio__time">
+        <span class="dbx-audio__time-cur" data-dbx-audio-cur>00:00</span>
+        <span class="dbx-audio__time-sep"> / </span>
+        <span class="dbx-audio__time-dur" data-dbx-audio-dur>--:--</span>
+      </span>
+    </div>
+    <div class="dbx-audio__bar" data-dbx-audio-bar>
+      <span class="dbx-audio__bar-buf" data-dbx-audio-buf style="width: 0%"></span>
+      <span class="dbx-audio__bar-fill" data-dbx-audio-fill style="width: 0%"></span>
+      <span class="dbx-audio__playhead" data-dbx-audio-playhead style="left: 0%"></span>
+    </div>
+  </div>
+  <audio class="dbx-audio__native" preload="metadata" src="{{ $href | safeURL }}" data-dbx-audio-el>
+    your browser doesn't support html5 audio.
+  </audio>
+</figure>

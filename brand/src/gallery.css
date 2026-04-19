@@ -1,0 +1,108 @@
+.dbx-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dbx-s-3);
+  margin: 1.6em 0;
+}
+
+.dbx-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--dbx-s-3);
+}
+
+.dbx-gallery figure { margin: 0; cursor: zoom-in; }
+
+.dbx-gallery figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--dbx-surface);
+  border: 1px solid var(--dbx-rule-2);
+  transition: border-color var(--dbx-speed-fast);
+}
+
+.dbx-gallery figure:hover img { border-color: var(--dbx-rule); }
+
+.dbx-gallery figcaption {
+  font-family: var(--dbx-font-mono);
+  font-size: var(--dbx-text-meta);
+  color: var(--dbx-ink-3);
+  text-transform: uppercase;
+  letter-spacing: var(--dbx-tracking-meta);
+  margin-top: var(--dbx-s-2);
+}
+
+.dbx-gallery--lead > figure:first-child { width: 100%; }
+
+@media (max-width: 540px) {
+  .dbx-gallery__grid { grid-template-columns: 1fr; }
+}
+
+.dbx-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 12, 12, 0.96);
+  z-index: 50;
+  display: none;
+  place-items: center;
+  padding: var(--dbx-s-8);
+  cursor: zoom-out;
+}
+.dbx-lightbox.is-open { display: grid; }
+
+.dbx-lightbox__frame {
+  width: 100%;
+  max-width: 1100px;
+  cursor: default;
+}
+
+.dbx-lightbox__img {
+  background: var(--dbx-surface);
+  border: 1px solid var(--dbx-rule);
+  margin-bottom: var(--dbx-s-4);
+  display: grid;
+  place-items: center;
+  max-height: calc(100vh - 160px);
+  overflow: hidden;
+}
+.dbx-lightbox__img img {
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  height: auto;
+  display: block;
+}
+
+.dbx-lightbox__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--dbx-font-mono);
+  font-size: var(--dbx-text-sm);
+  color: var(--dbx-ink-2);
+  gap: var(--dbx-s-5);
+  flex-wrap: wrap;
+}
+
+.dbx-lightbox__nav {
+  display: flex;
+  gap: var(--dbx-s-4);
+  align-items: center;
+}
+
+.dbx-lightbox__nav button {
+  font-family: var(--dbx-font-mono);
+  font-size: var(--dbx-text-sm);
+  color: var(--dbx-ink-2);
+  transition: color var(--dbx-speed-fast);
+}
+.dbx-lightbox__nav button:hover,
+.dbx-lightbox__nav button:focus-visible {
+  color: var(--dbx-accent);
+  outline: none;
+}
+
+.dbx-lightbox__idx {
+  color: var(--dbx-ink-3);
+  font-variant-numeric: tabular-nums;
+}

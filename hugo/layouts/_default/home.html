@@ -10,7 +10,7 @@
     {{- $posts := where .Site.RegularPages "Section" "blog" -}}
     {{- range first 7 $posts }}
       <a class="dbx-row" href="{{ .RelPermalink }}">
-        <span class="dbx-row__lead">{{ .Date.Format "2006-01-02" }}</span>
+        <span class="dbx-row__lead">{{ if not .Date.IsZero }}{{ .Date.Format "2006-01-02" }}{{ end }}</span>
         <span class="dbx-row__title">{{ .Title | lower }}</span>
         <span class="dbx-row__arrow">→</span>
       </a>
@@ -26,7 +26,7 @@
     {{- $rolls := where .Site.RegularPages "Section" "photography" -}}
     {{- range $rolls }}
       <a class="dbx-photo-row" href="{{ .RelPermalink }}">
-        <span class="dbx-photo-row__year">{{ .Date.Format "2006-01-02" }}</span>
+        <span class="dbx-photo-row__year">{{ if not .Date.IsZero }}{{ .Date.Format "2006-01-02" }}{{ end }}</span>
         <span class="dbx-photo-row__slug">{{ .Title | lower }}</span>
         <span class="dbx-photo-row__arrow">→</span>
       </a>

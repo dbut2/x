@@ -11,6 +11,8 @@
 @import "./article.css";
 @import "./prose.css";
 @import "./photo.css";
+@import "./gallery.css";
+@import "./audio.css";
 @import "./responsive.css";
 
 @theme {
