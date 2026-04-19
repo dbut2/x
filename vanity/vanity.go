@@ -10,16 +10,25 @@ import (
 )
 
 func Middleware(repo string) gin.HandlerFunc {
-	if repo == "" {
-		panic("vanity: repo is empty")
-	}
 	info, ok := debug.ReadBuildInfo()
 	if !ok || info.Main.Path == "" {
 		panic("vanity: cannot read main module from build info")
 	}
-	module := info.Main.Path
+	return MiddlewareFor(info.Main.Path, repo)
+}
+
+func MiddlewareFor(module, repo string) gin.HandlerFunc {
+	if module == "" {
+		panic("vanity: module is empty")
+	}
+	if repo == "" {
+		panic("vanity: repo is empty")
+	}
 
 	repo, dir := splitRepo(repo)
+	if !strings.Contains(repo, "://") {
+		repo = "https://" + repo
+	}
 	browsePath := ""
 	if dir != "" {
 		browsePath = "/" + dir
