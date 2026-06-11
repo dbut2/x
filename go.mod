@@ -3,7 +3,7 @@ module dbut.dev/x
 go 1.26.0
 
 require (
-	github.com/a-h/templ v0.3.977
+	github.com/a-h/templ v0.3.1020
 	github.com/gin-gonic/gin v1.12.0
 )
 

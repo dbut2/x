@@ -1,0 +1,81 @@
+package kit
+
+// Document is the page shell: head with the styling/behaviour CDNs, body
+// with the app background.
+templ Document(title string) {
+	<!DOCTYPE html>
+	<html lang="en" data-theme="light">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ title }</title>
+			<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css"/>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="https://unpkg.com/htmx.org@2.0.8/dist/htmx.min.js"></script>
+		</head>
+		<body class="bg-base-200 min-h-screen">
+			{ children... }
+		</body>
+	</html>
+}
+
+// Center fills the viewport and centers its content; for login-style pages.
+templ Center() {
+	<div class="min-h-screen flex items-center justify-center p-6">
+		{ children... }
+	</div>
+}
+
+// AppShell is Document plus top navbar, mobile bottom nav, and the main
+// content area.
+templ AppShell(title string, nav Nav) {
+	@Document(title) {
+		@navbar(nav)
+		<main class="pb-24 sm:pb-8">
+			{ children... }
+		</main>
+		@mobileNav(nav)
+	}
+}
+
+templ navbar(n Nav) {
+	<div class="navbar bg-base-100 border-b border-base-300 min-h-12">
+		<div class="flex-1 flex items-center gap-1">
+			<a href={ templ.URL(n.BrandHref) } class="btn btn-ghost text-lg font-bold px-2">{ n.Brand }</a>
+			<ul class="menu menu-horizontal menu-sm px-1 gap-1 hidden sm:flex">
+				for _, l := range n.Links {
+					<li><a href={ templ.URL(l.Href) } class={ templ.KV("active", n.Active == l.Label) }>{ l.Label }</a></li>
+				}
+			</ul>
+		</div>
+		<div class="flex-none pr-2">
+			<div class="dropdown dropdown-end">
+				<div tabindex="0" role="button" class="avatar placeholder cursor-pointer">
+					<div class="bg-neutral text-neutral-content w-8 rounded-full"><span class="text-xs">{ n.Initials }</span></div>
+				</div>
+				<ul tabindex="0" class="dropdown-content menu menu-sm bg-base-100 rounded-box border border-base-300 w-40 p-2 shadow z-10">
+					for _, m := range n.Menu {
+						<li>
+							if m.PostAction != "" {
+								<form method="post" action={ templ.URL(m.PostAction) } class="p-0"><button class="w-full text-left px-3 py-1.5">{ m.Label }</button></form>
+							} else {
+								<a href={ templ.URL(m.Href) }>{ m.Label }</a>
+							}
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+}
+
+templ mobileNav(n Nav) {
+	<div class="btm-nav btm-nav-sm border-t border-base-300 bg-base-100 sm:hidden z-10">
+		for _, l := range n.Links {
+			<a href={ templ.URL(l.Href) } class={ templ.KV("active text-primary", n.Active == l.Label), templ.KV("text-base-content/60", n.Active != l.Label) }>
+				@Icon(l.Icon, 20)
+				<span class="btm-nav-label text-xs">{ l.Label }</span>
+			</a>
+		}
+	</div>
+}

@@ -1,0 +1,38 @@
+package kit
+
+// Table renders the column headers; children are the body rows.
+templ Table(size Size, cols []Col) {
+	<div class="overflow-x-auto">
+		<table class={ tableClass(size) }>
+			<thead>
+				<tr>
+					for _, c := range cols {
+						<th class={ widthClass(c.W) }>{ c.Label }</th>
+					}
+				</tr>
+			</thead>
+			<tbody>
+				{ children... }
+			</tbody>
+		</table>
+	</div>
+}
+
+templ TR(o RowStyle) {
+	<tr class={ o.class() }>{ children... }</tr>
+}
+
+templ TD(o CellOpts) {
+	<td class={ o.class() } { o.attrs()... }>{ children... }</td>
+}
+
+// KVTable renders ordered key/value pairs.
+templ KVTable(pairs [][2]string) {
+	<table class="table table-xs">
+		<tbody>
+			for _, kv := range pairs {
+				<tr><td class="opacity-50">{ kv[0] }</td><td class="font-mono break-all">{ kv[1] }</td></tr>
+			}
+		</tbody>
+	</table>
+}

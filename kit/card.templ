@@ -1,0 +1,75 @@
+package kit
+
+templ Card() {
+	<div class="card bg-base-100 border border-base-300">{ children... }</div>
+}
+
+// CardNarrow is a Card capped at a small width, for centered dialogs.
+templ CardNarrow() {
+	<div class="card bg-base-100 border border-base-300 w-full max-w-sm">{ children... }</div>
+}
+
+// LinkCard is a Card that is one big link.
+templ LinkCard(href string) {
+	<a href={ templ.URL(href) } class="card bg-base-100 border border-base-300 hover:border-base-content/30 transition-colors">{ children... }</a>
+}
+
+// CardForm is a Card that is itself a POST form.
+templ CardForm(action string) {
+	<form method="post" action={ templ.URL(action) } class="card bg-base-100 border border-base-300">{ children... }</form>
+}
+
+templ CardBody(o BodyOpts) {
+	<div class={ o.class() }>{ children... }</div>
+}
+
+// PanelHeader is a slim header strip across the top of a Card.
+templ PanelHeader() {
+	<div class="px-4 py-2 border-b border-base-300 flex items-center gap-2">{ children... }</div>
+}
+
+templ Alert(tone Tone) {
+	<div class={ classes("alert", toned("alert", tone), "py-2.5 px-4 text-sm") }>{ children... }</div>
+}
+
+templ Badge(text string, o BadgeOpts) {
+	<span class={ o.class() }>{ text }</span>
+}
+
+templ Breadcrumbs(crumbs []Crumb) {
+	<div class="breadcrumbs text-sm py-0">
+		<ul>
+			for _, c := range crumbs {
+				<li>
+					if c.Href != "" {
+						<a href={ templ.URL(c.Href) }>{ c.Label }</a>
+					} else {
+						{ c.Label }
+					}
+				</li>
+			}
+		</ul>
+	</div>
+}
+
+templ Tabs() {
+	<div role="tablist" class="tabs tabs-boxed bg-base-300/50 w-fit">{ children... }</div>
+}
+
+// Tab is one filter tab; a non-zero count renders a toned counter badge.
+templ Tab(label string, href string, active bool, count int, tone Tone) {
+	<a role="tab" href={ templ.URL(href) } class={ "tab gap-1", templ.KV("tab-active", active) }>
+		{ label }
+		if count > 0 {
+			<span class={ classes("badge badge-xs", toned("badge", tone)) }>{ itoa(count) }</span>
+		}
+	</a>
+}
+
+templ Collapse(title string) {
+	<div class="collapse collapse-arrow bg-base-200/70 border border-base-300">
+		<input type="checkbox"/>
+		<div class="collapse-title text-sm font-medium py-2 min-h-0">{ title }</div>
+		<div class="collapse-content">{ children... }</div>
+	</div>
+}

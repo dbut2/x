@@ -1,0 +1,57 @@
+package kit
+
+// Icon draws one of the built-in line icons.
+templ Icon(name string, size int) {
+	<svg width={ itoa(size) } height={ itoa(size) } viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		if name == "clock" {
+			<circle cx="12" cy="12" r="9"></circle>
+			<path d="M12 7v5l3 3"></path>
+		} else {
+			<path d={ iconPath(name) }></path>
+		}
+	</svg>
+}
+
+// MonoPanel is a monospace log area.
+templ MonoPanel() {
+	<div class="font-mono text-xs leading-6 p-4">{ children... }</div>
+}
+
+// MarkLine is one log line: a toned status mark, a subject, and a faint note.
+templ MarkLine(mark string, tone Tone, text string, note string) {
+	<div>
+		<span class={ toneText(tone) }>{ mark }</span>
+		{ " " + text + " " }
+		<span class="opacity-50">{ note }</span>
+	</div>
+}
+
+// TokenLine is a clickable token with an example; clicking inserts the token
+// into the focused TokenTarget input (requires TokenInsertScript on the page).
+templ TokenLine(token string, example string) {
+	<div class="flex gap-2 leading-5">
+		<button type="button" class="font-mono text-primary hover:underline" data-token={ token }>{ token }</button>
+		<span class="opacity-50 truncate">{ example }</span>
+	</div>
+}
+
+// TokenInsertScript wires TokenLine buttons to TokenTarget inputs.
+templ TokenInsertScript() {
+	<script>
+		let lastTemplateInput = null;
+		document.addEventListener('focusin', (e) => {
+			if (e.target.classList && e.target.classList.contains('template-input')) lastTemplateInput = e.target;
+		});
+		document.addEventListener('click', (e) => {
+			const b = e.target.closest('[data-token]');
+			if (!b) return;
+			const el = lastTemplateInput || document.querySelector('.template-input');
+			if (!el) return;
+			const start = el.selectionStart ?? el.value.length;
+			const end = el.selectionEnd ?? start;
+			el.value = el.value.slice(0, start) + b.dataset.token + el.value.slice(end);
+			el.focus();
+			el.selectionStart = el.selectionEnd = start + b.dataset.token.length;
+		});
+	</script>
+}

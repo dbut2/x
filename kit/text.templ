@@ -1,0 +1,56 @@
+package kit
+
+templ Title(text string) {
+	<h1 class="text-xl font-bold">{ text }</h1>
+}
+
+templ SectionLabel(text string) {
+	<h2 class="text-xs font-semibold uppercase opacity-50">{ text }</h2>
+}
+
+// GroupHeading labels a group in a reference list, with an optional note.
+templ GroupHeading(label string, note string) {
+	<div class="text-xs font-semibold uppercase opacity-50 mt-2 mb-1">
+		{ label }
+		if note != "" {
+			<span class="normal-case font-normal">{ " — " + note }</span>
+		}
+	</div>
+}
+
+templ Code(text string) {
+	<code class="text-primary">{ text }</code>
+}
+
+templ B(text string) {
+	<b>{ text }</b>
+}
+
+// Muted is a block of secondary body text.
+templ Muted() {
+	<div class="text-sm opacity-60">{ children... }</div>
+}
+
+// Hint is a block of fine print.
+templ Hint() {
+	<div class="text-xs opacity-50">{ children... }</div>
+}
+
+// Small is a block of small text whose pieces style themselves.
+templ Small() {
+	<div class="text-xs">{ children... }</div>
+}
+
+// Span groups inline content.
+templ Span() {
+	<span>{ children... }</span>
+}
+
+// T is a one-off styled text run.
+templ T(text string, o TextOpts) {
+	if o.Block {
+		<div class={ o.class() }>{ text }</div>
+	} else {
+		<span class={ o.class() }>{ text }</span>
+	}
+}

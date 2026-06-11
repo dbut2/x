@@ -1,0 +1,56 @@
+package kit
+
+// Page is the main content column of an app page.
+templ Page(width string) {
+	<div class={ "p-4 sm:p-6 " + width + " mx-auto flex flex-col gap-4" }>
+		{ children... }
+	</div>
+}
+
+// PageHeader is the page title row; children render as trailing actions.
+templ PageHeader(title string) {
+	<div class="flex items-center gap-3">
+		<h1 class="text-xl font-bold flex-1">{ title }</h1>
+		{ children... }
+	</div>
+}
+
+templ Stack(gap int) {
+	<div class={ classes("flex flex-col", gapClass(gap)) }>{ children... }</div>
+}
+
+// StackID is a Stack addressable by fragment targets.
+templ StackID(id string, gap int) {
+	<div id={ id } class={ classes("flex flex-col", gapClass(gap)) }>{ children... }</div>
+}
+
+templ Row(o RowOpts) {
+	<div class={ o.class() }>{ children... }</div>
+}
+
+// Spacer pushes following Row content to the far edge.
+templ Spacer() {
+	<span class="flex-1"></span>
+}
+
+// Grow expands within a Row; minW (a width step) stops it collapsing when
+// the row wraps.
+templ Grow(minW int) {
+	<div class={ growClass(minW) }>{ children... }</div>
+}
+
+// Grid2 is a two-column grid that stacks on small screens.
+templ Grid2(gapX, gapY int) {
+	<div class={ grid2Class(gapX, gapY) }>{ children... }</div>
+}
+
+// ActionBar is the footer action row of a form card.
+templ ActionBar() {
+	<div class="flex gap-2 items-center pt-1 border-t border-base-200">{ children... }</div>
+}
+
+// EditRow is a removable grid row in a repeating editor list; marker is the
+// class fragment selectors use to address the row.
+templ EditRow(marker string, g RowGrid) {
+	<div class={ marker + " grid " + string(g) + " gap-2 items-center" }>{ children... }</div>
+}
