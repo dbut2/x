@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "platformAutomerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "schedule": ["on monday"],
+  "github-actions": {
+    "managerFilePatterns": [
+      "/^workflow-sync/workflows/.+\\.ya?ml$/"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "groupName": "all dependencies",
+      "groupSlug": "all"
+    }
+  ],
+  "baseBranchPatterns": ["main"]
+}

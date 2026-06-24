@@ -1,0 +1,34 @@
+bundles:
+  go-quality:
+    - quality.yaml
+  automerge:
+    - automerge.yaml
+
+defaults:
+  checks:
+    - Build Check
+    - Docker Compose
+    - Go Generate
+    - Go Mod Tidy
+    - Go Test
+    - golangci-lint
+
+targets:
+  dbut2/commuter:
+    bundles:
+      - go-quality
+      - automerge
+  dbut2/float:
+    bundles:
+      - go-quality
+      - automerge
+  dbut2/web-template:
+    bundles:
+      - go-quality
+  dbut2/coach:
+    bundles:
+      - automerge
+    checks:
+      - Docker Compose
+      - Gen Gate
+      - Go Gate

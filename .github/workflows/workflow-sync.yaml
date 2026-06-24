@@ -1,0 +1,76 @@
+name: Workflow Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - workflow-sync/**
+      - .github/workflows/workflow-sync.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  targets:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.list.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - id: list
+        run: echo "matrix=$(go run ./workflow-sync list --json)" >> "$GITHUB_OUTPUT"
+
+  sync:
+    needs: targets
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.targets.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - id: name
+        env:
+          REPO: ${{ matrix.repo }}
+        run: echo "repo=${REPO#*/}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate token
+        id: token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.GH_CLIENT_ID }}
+          private-key: ${{ secrets.GH_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ steps.name.outputs.repo }}
+
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ matrix.repo }}
+          token: ${{ steps.token.outputs.token }}
+          path: target
+
+      - name: Render
+        run: go run ./workflow-sync render "${{ matrix.repo }}" target
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          path: target
+          token: ${{ steps.token.outputs.token }}
+          branch: workflow-sync
+          delete-branch: true
+          labels: automerge
+          commit-message: Sync workflows from dbut2/x
+          title: Sync workflows from dbut2/x
+          body: beep boop beep boop, I've updated some workflows for you
+          author: dylan-botler[bot] <dylan-botler[bot]@users.noreply.github.com>
+          committer: dylan-botler[bot] <dylan-botler[bot]@users.noreply.github.com>
