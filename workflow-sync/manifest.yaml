@@ -25,6 +25,7 @@ targets:
   dbut2/web-template:
     bundles:
       - go-quality
+      - automerge
   dbut2/coach:
     bundles:
       - automerge
