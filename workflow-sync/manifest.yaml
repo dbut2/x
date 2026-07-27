@@ -14,6 +14,9 @@ defaults:
     - golangci-lint
 
 targets:
+  dbut2/bolt:
+    bundles:
+      - automerge
   dbut2/commuter:
     bundles:
       - go-quality
