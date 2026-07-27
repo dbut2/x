@@ -19,6 +19,9 @@ var manifestData []byte
 //go:embed workflows
 var workflows embed.FS
 
+const header = "# DO NOT EDIT. Synced from dbut2/x\n" +
+	"# https://github.com/dbut2/x/blob/main/workflow-sync/workflows/%s\n\n"
+
 type target struct {
 	Bundles []string `yaml:"bundles"`
 	Checks  []string `yaml:"checks"`
@@ -114,6 +117,9 @@ func render(m manifest, repo, out string) {
 			}
 			f, err := os.Create(filepath.Join(dst, file))
 			if err != nil {
+				panic(err)
+			}
+			if _, err := fmt.Fprintf(f, header, file); err != nil {
 				panic(err)
 			}
 			if err := tmpl.Execute(f, data); err != nil {
