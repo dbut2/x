@@ -32,6 +32,11 @@ targets:
       - go-quality
       - automerge
       - publish
+  dbut2/cordial:
+    bundles:
+      - go-quality
+      - automerge
+      - publish
   dbut2/coach:
     bundles:
       - automerge
