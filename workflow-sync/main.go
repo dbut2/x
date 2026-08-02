@@ -25,6 +25,7 @@ const header = "# DO NOT EDIT. Synced from dbut2/x\n" +
 type target struct {
 	Bundles []string `yaml:"bundles"`
 	Checks  []string `yaml:"checks"`
+	Gomods  []string `yaml:"gomods"`
 }
 
 type manifest struct {
@@ -94,7 +95,14 @@ func render(m manifest, repo, out string) {
 	if len(checks) == 0 {
 		checks = m.Defaults.Checks
 	}
-	data := map[string]any{"Checks": checks}
+	data := map[string]any{"Checks": checks, "Gomods": t.Gomods}
+	if len(t.Gomods) > 0 {
+		b, err := json.Marshal(t.Gomods)
+		if err != nil {
+			panic(err)
+		}
+		data["GomodsList"] = string(b)
+	}
 
 	dst := filepath.Join(out, ".github", "workflows")
 	if err := os.MkdirAll(dst, 0o755); err != nil {

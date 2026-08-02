@@ -37,6 +37,8 @@ targets:
       - go-quality
       - automerge
       - publish
+    gomods:
+      - .
   dbut2/coach:
     bundles:
       - automerge
