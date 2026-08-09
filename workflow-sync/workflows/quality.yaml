@@ -100,7 +100,7 @@ jobs:
       - uses: actions/setup-go@v7
         with:
           go-version-file: ${{ matrix.dir }}/go.mod
-      - run: npm install -g @tailwindcss/cli@4.3.3
+      - run: curl -fsSL https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64 -o /usr/local/bin/tailwindcss && chmod +x /usr/local/bin/tailwindcss
       - run: go mod download
         working-directory: ${{ matrix.dir }}
       - run: go generate ./...
