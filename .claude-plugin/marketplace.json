@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "dbut2",
+  "description": "Dylan Butler's personal Claude Code plugins",
+  "owner": {
+    "name": "Dylan Butler",
+    "email": "dylan@but.la"
+  },
+  "plugins": [
+    {
+      "name": "personal-skills",
+      "description": "Personal skills for Claude Code. Currently the prose skill, for writing in Dylan's voice while avoiding the usual AI writing tells.",
+      "version": "1.0.0",
+      "author": { "name": "Dylan Butler" },
+      "category": "productivity",
+      "source": "./plugins/personal-skills",
+      "homepage": "https://github.com/dbut2/x/tree/main/plugins/personal-skills"
+    }
+  ]
+}
