@@ -22,7 +22,8 @@ Read both reference files before writing anything longer than a sentence or two.
    - Project blurb, repo description, README → Register 4
    - Commit message, PR body, issue text → Register 5
    - Chat message, DM, casual text → Register 6
-   - Email, personal note → Register 3's warmth or Register 6's brevity, dialled to the recipient
+   - Email → Register 7
+   - Personal note → Register 3's warmth or Register 6's brevity, dialled to the recipient
    - Code comment → see Code comments below
    - Resume / bio / professional → see Resume below
    If it's ambiguous and the choice materially changes the output, ask. Otherwise pick the obvious one and say which you picked.

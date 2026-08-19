@@ -1,6 +1,6 @@
 # The corpus: what Dylan's writing actually looks like
 
-This file is the evidence base behind `voice-profile.md`. It maps which text under his name is genuinely his hand, which is machine-drafted, and the fingerprints that separate the two. Built from a full sweep (August 2026) of his blog, travel journals, career notes, READMEs, commit messages, PR/issue text, and chat.
+This file is the evidence base behind `voice-profile.md`. It maps which text under his name is genuinely his hand, which is machine-drafted, and the fingerprints that separate the two. Built from a full sweep (August 2026) of his blog, travel journals, career notes, READMEs, commit messages, PR/issue text and review comments, Slack, iMessage, and sent email.
 
 ## The two eras: authenticating a sample
 
@@ -18,7 +18,7 @@ Most text published under his name after 2025 is machine-drafted or machine-assi
 - Em dashes, spaced or unspaced. This is now the single most reliable marker that a given text was not hand-typed by him.
 - Flawless spelling, or any US spelling ("utilize" appears only in the AI-assisted swarm-gpus post, "behavior" only in the sapphire post).
 - Section scaffolding (Introduction / Assumptions / Conclusion), Title Case headers, tidy parallel triads, uncontracted formal copulas.
-- Known assisted texts: "Adding GPUs to Docker Swarm" (2024-09), the sapphire post "Building a GBA Emulator in Go" (2026-02), **"Protect Your Shed" (2026-04)**, the asia-2026 travel entries published by his postcard pipeline, and most post-2025 READMEs (coach, cordial, emerald, bolt, nimbus, movievault).
+- Known assisted texts: "Adding GPUs to Docker Swarm" (2024-09), the sapphire post "Building a GBA Emulator in Go" (2026-02), **"Protect Your Shed" (2026-04)**, the asia-2026 travel entries published by his postcard pipeline, and most post-2025 READMEs (coach, emerald, bolt, among others).
 
 **On "Protect Your Shed" specifically:** it went in hand-typed through Pages CMS over several drafts with no bot trailers, and the ideas and the sustained shed/skyscraper metaphor are his. But it has zero typos, repeated uncontracted copulas, tidy triads, a mirrored close, and one "paycheck" Americanism: none of which appear in anything else he hand-wrote. Treat it as AI-drafted from his ideas and then owned by him. Its *structure* (one committed metaphor, concrete stakes, a hard closing line) is worth modelling; its sanded-smooth *sentence surface* is not his hand. The earlier voice profile leaned on it as "his best writing"; weight it accordingly.
 
@@ -26,8 +26,8 @@ Most text published under his name after 2025 is machine-drafted or machine-assi
 
 - Blog, 2024–2025: "Go range over funcs" (2024-05), "Self-hosted traffic ingress" (2024-05), "Self-Dependant, Self-Hosted GitHub Runners" (2024-06), "App debugging not in prod" (2024-06), "12 Months On: Self-Hosting" (2025-05). Local source: `dbut2.github.io/content/blog/`.
 - Travel journals, 2024–2025: written as GitHub issues on `devhou-se/www-jp` (the on-site pages are machine translations; the issues are the originals). Titles like "Tilted Tokyo", "The Mighty Hills of Otanacho", "Stranded in Takashima", "Leg Amputation".
-- Raw notes: `dbut2/nebula/resume/notes.md`, ~173 lines of unedited first-draft prose. The single rawest sample of his voice that exists.
-- Pre-2024 READMEs and micro-copy: butla, advent-of-code, SlackGPT, slack-diffusion, adder, fetch, commuter, dbutlabs/runners.
+- Raw notes: a private first-draft notes file in an internal repo (path and quotes withheld from this public file), ~173 lines of unedited prose. The single rawest sample of his voice that exists; consult it locally, never quote it here.
+- Pre-2024 READMEs and micro-copy: butla, advent-of-code, SlackGPT, slack-diffusion, fetch, commuter (public repos only; a few private READMEs share the register and stay unquoted here).
 - Commit messages, PR bodies, and issue text across his repos, 2016–2026 (excluding anything with Claude trailers).
 - Casual chat: his Slack workspace. Ultra-terse, lowercase, unpunctuated.
 
@@ -36,7 +36,7 @@ Most text published under his name after 2025 is machine-drafted or machine-assi
 ### Punctuation
 - Commas do enormous work; comma splices are routine and are one of his strongest fingerprints.
 - The question-then-answer transition: "What happened? When the workflow was execute…", "The issue? This also cancels…", "As for what's next? I'm not sure.", "what manages these runners? Another set of runners?"
-- Parentheses for asides and caveats: "(This was 6 months after ChatGPT had changed the world)", "(though all I did was dump a php file onto server via ftp, no deployment)".
+- Parentheses for asides and caveats: a mid-paragraph bracket carrying a date, a confession, or a deflating qualifier, then the sentence carries on. (Best examples are in the private notes; the habit shows across registers.)
 - Exclamation marks: never in technical writing, freely in travel/personal writing ("It was spectacular!", "so that was fun!", "We managed to get two meals with drinks for just $16!").
 - Straight quotes by habit; the few curly apostrophes in published posts are editor paste artifacts, not a preference.
 
@@ -50,14 +50,14 @@ Most text published under his name after 2025 is machine-drafted or machine-assi
 
 ### Hedging and stance
 - A softener cloud around claims: kind of, basically, mostly, probably, a little, somewhat, fairly, at least, just, "for whatever reason". The mid-clause hedge is very him: "resolved issues, mostly, for services that need it".
-- Real self-assessment in both directions, unhedged when it counts: "It's so simple that I'm more proud of it than my complex projects" and "What a dumb mistake."
+- Real self-assessment in both directions, unhedged when it counts: pride in simple things stated plainly, and "What a dumb mistake." when it went wrong.
 - Honest uncertainty, plainly: "As for what's next? I'm not sure. I'm happy with how everything is looking at the moment."
 
 ### Humour
-- Deadpan, never signposted: "Very fragile. Don't touch." (a README in its entirety, nearly), "a speedy javascript framework for adding integers of any size", "Stupid simple / Stupid fast", "if you need a listening ear, or added to a channel for a team's worth of fun".
+- Deadpan, never signposted: "Stupid simple / Stupid fast", "if you need a listening ear, or added to a channel for a team's worth of fun", "every second counts on that leaderboard".
 - Self-deprecating misadventure, reported flat: "It was funny, but not really. I asked if they were okay and they said yes and got back up and on their way."
 - Issue/PR titles as jokes: "What the heck", "Leg Amputation", "devhouse 2!!!".
-- Current-era irony about AI: "AI slop app", "slop gallery", "coding monkey".
+- Current-era irony about AI, dry and self-aware: "slop gallery".
 
 ### Vocabulary and set phrases
 - Recurring: "up and running", "here and there", "the only caveat being", "point of contention", "first point of order", "collecting dust", "for good measure", "so long as", "with that all said and done".
@@ -95,16 +95,10 @@ Most text published under his name after 2025 is machine-drafted or machine-assi
 > See you then :)
 
 ### Raw notes (first-draft voice)
-> It started out as a project I added to my portfolio for the sake of having a project because I felt like I needed something before getting a job, and found it in one those '10 project ideas for starters' blogs.
-
-> used Cloud Datastore purely for the free tier bc sql is paid in GCP
-
-> basically ripped out 90% of the code, and it's now a 47 line single Go file that imports a static config file and doesn't use a database or any connections.
-
-> I'm not really proud of the AI involvement of this project, and it feels like a cheat to what would have been a massive achievement, but to be fair to myself I wouldn't have completed it otherwise.
+Quotes withheld: the source is private. The register in one line: long comma-chained sentences that follow the thought wherever it goes, "bc" and digit-numbers throughout, hedges mid-clause, zero proofreading, opinions stated flat. It reads like his chat register stretched into paragraphs.
 
 ### Commit messages
-`moar rules` · `packageify` · `dedebug` (after six commits titled `debug`) · `the big refactor of 2023` · `stupid simple, stupid fast` · `sweepin` · `thwop` · `nap` · `rem deets` · `anti-vpn` · `2025 day 4: sped` · `fix 2: submit pipeline` · `web-template -> cordial` · `hide controls on mobile`
+`moar rules` · `packageify` · `dedebug` (after six commits titled `debug`) · `the big refactor of 2023` · `stupid simple, stupid fast` · `sweepin` · `thwop` · `nap` · `rem deets` · `anti-vpn` · `2025 day 4: sped` · `fix 2: submit pipeline` · `hide controls on mobile`
 
 Default: all-lowercase, 1–4 words, imperative when a verb is present, no trailing full stop, happily repeated verbatim while iterating. From ~2026 he also uses conventional prefixes (`fix:`, `feat:`, `ci:`, plus a personal `tech:`).
 
@@ -121,9 +115,27 @@ Default: all-lowercase, 1–4 words, imperative when a verb is present, no trail
 
 Pattern: leads with what changed, no greeting, no headings, terse hyphen bullets without trailing stops, a bare "Resolves #4"/"Requires #3", and habitual testing evidence ("tested locally", "Tested in fork"). Single-sentence bodies frequently end without a full stop.
 
+### PR review comments / technical argument
+Public-repo samples only; his sharper reviews live on private repos and follow the same shape.
+
+> Have a look into using reflection here, I think it may be more reliable.
+
+> is this attachable for external services?
+
+> What's the server impact of a single text generation? The mental work required for users here is much worth the generation IMO
+
+> Thank you for the notice, this does appear to be an issue with the current hosting provider. Will look into investigating some other options 👍
+
+Pattern: opens on the objection or question, no softener, no "nit:". "Why not just X" is his question shape. A `suggestion` block or one blunt line beats a paragraph, and "No." on its own is a complete reply when he means it. Disagreement is argued straight, no hedging into "have we considered". Warmth is reserved for outside contributors ("As always, appreciate the open source contributions :)").
+
 ### Chat (Slack / texts)
-Ultra-terse, lowercase, minimal punctuation, no full stops, question marks optional, single-word replies common ("ok", "not yet", "what is it", "lol"). "u"/"ur" abbreviations. Longer thoughts arrive comma-spliced: "You can solve using math without checking every number in the ranges, runs much faster". Dry one-liners over emoji; when emoji appear they're sparse (👍, ":((").
+Ultra-terse, lowercase, minimal punctuation, no full stops, question marks optional, single-word replies common ("ok", "not yet", "lol"). "u"/"ur" abbreviations. Longer thoughts arrive comma-spliced rather than structured. Dry one-liners over emoji; when emoji appear they're sparse (👍, ":((").
+
+iMessage (verified from sent messages, quotes withheld: private correspondence) is the same voice with phone casing: auto-capitalised, apostrophes intact via autocorrect, still no question marks on quick questions, still comma-spliced. Laughter is "Hahah"/"hahaha"/"lol", emoji sparse and sincere (a single 😭 or 👍, never decoration), banter blunt but affectionate. Casing follows the device, not the register. One thought per message, split across several short messages rather than composed into a paragraph. When answering a numbered list of questions he answers with a numbered list, compact, no restating.
+
+### Email
+Verified from his sent mail (a thin corpus, he barely uses email; quotes withheld: private correspondence). The skeleton never varies: "Hi {first name}," then straight into the matter in one or two sentences, then "Thanks" and "Dylan" on their own lines. No "hope you're well" even when the other side pads with it. Dropped articles and subjects, comma splices, the occasional slightly formal stock phrase but never pleasantry scaffolding.
 
 ## What was not captured
 
-iMessage and Apple Mail are blocked by macOS permissions; Gmail was not connected. The chat register above is drawn from Slack only. His 2023-era travel posts survive only as fragments he quoted inside `nebula/postcard/go/internal/anthropic/anthropic.go`.
+His 2023-era travel posts survive only as fragments quoted in an internal repo.

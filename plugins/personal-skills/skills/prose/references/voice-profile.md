@@ -17,7 +17,7 @@ One warning before the registers: most text published under his name after 2025 
 - **Fronted participial openers**, sometimes dangling, and he doesn't care: "Wanting to keep this configuration held in GitHub, …"
 - **A hedge cloud, honestly meant.** kind of, basically, mostly, probably, a little, at least, just. Including mid-clause: "resolved issues, mostly, for services that need it". This is his real voice, not corporate hedging.
 - **Concrete over abstract.** Real tool names, model numbers, prices, times: Cloud Spanner, RTX 3060, k3s, go1.23, "$0 GCP bill", "two meals with drinks for just $16".
-- **Dry, deadpan humour, never signposted.** "Very fragile. Don't touch." "It was funny, but not really."
+- **Dry, deadpan humour, never signposted.** "It was funny, but not really." "every second counts on that leaderboard."
 - **Self-deprecating about mistakes, matter-of-fact.** "Oh, I just formatted the drives. Crap." "What a dumb mistake."
 - **Honest uncertainty, plainly named.** "not quite yet sold on the proposal", "As for what's next? I'm not sure."
 - **Set phrases he reaches for:** up and running, here and there, the only caveat being, point of contention, first point of order, collecting dust, for good measure.
@@ -63,9 +63,9 @@ What to copy: momentum prose, long clauses strung with "and", chronological, war
 
 > A URL shortener built for speed and nothing else.
 
-> This is a self-dependant config and deployment for my self-hosted GitHub runners. Very fragile. Don't touch.
+> A Game Boy Advance emulator written from scratch in Go. Mostly as a test of my own ability to understand the inner workings of computers.
 
-What to copy: one plain sentence, one idea, no hype adjectives. States what it is and why it exists. Deadpan is welcome. His site bio is all lowercase: "software engineer in melbourne. i write some code, take some photos, and sometimes write about it too."
+What to copy: one plain sentence, one idea, no hype adjectives. States what it is and why it exists. Deadpan is welcome ("Stupid simple / Stupid fast"). His site bio is all lowercase: "software engineer in melbourne. i write some code, take some photos, and sometimes write about it too."
 
 ## Register 5: Commit messages, PR bodies, issue text
 
@@ -73,9 +73,17 @@ Commits: all-lowercase, 1–4 words, imperative when a verb is present, no trail
 
 PR/issue bodies: lead with what changed, no greeting, no headings, no bold scaffolding. Terse hyphen bullets without trailing stops. Testing evidence stated plainly: "tested locally", "Tested in fork". Bare cross-references: "Resolves #4". Single-sentence bodies often end without a full stop. Requests are direct and polite-casual: "Can you fix the blog user filter for each person".
 
+Review comments and technical argument: open on the objection or question with no softener and no "nit:" ("Have a look into using reflection here, I think it may be more reliable."). "Why not just X" is his question shape. One blunt line or a `suggestion` block beats a paragraph, "No." on its own is a complete reply, disagreement gets argued straight. Warmth is reserved for outside contributors.
+
 ## Register 6: Chat (Slack, texts, DMs)
 
 Lowercase, minimal punctuation, no full stops, question marks optional. Single-word replies are complete replies: "ok", "not yet", "lol". "u"/"ur" abbreviations. Longer thoughts arrive comma-spliced, not structured. Dry one-liners over emoji; sparse 👍 or ":((" when warranted. Never markdown, never bullet points, never a greeting-and-signoff shape.
+
+Casing follows the device, not the register: desktop chat is lowercase with no apostrophes, phone messages are auto-capitalised with apostrophes intact via autocorrect. Same voice either way. One thought per message, split across several short messages rather than composed into a paragraph. Laughter is "Hahah"/"hahaha"/"lol", banter is blunt but affectionate. He answers a numbered list of questions with a numbered list. (Real samples are private correspondence and are deliberately not quoted here.)
+
+## Register 7: Email
+
+Verified from sent mail (thin corpus, he barely uses email; real samples are private and deliberately not quoted here). Fixed skeleton, never deviates: "Hi {first name}," then straight into the matter in one or two sentences, then "Thanks" and "Dylan" on their own lines. No "hope you're well" even when the other side pads with it. Dropped articles and subjects ("Will look into…" as a full sentence shape), comma splices as usual, the occasional slightly formal stock phrase but never pleasantry scaffolding.
 
 ## Negative examples: under his name, but not his voice
 
