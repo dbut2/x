@@ -1,17 +1,18 @@
 {{ define "main" }}
-  <header class="dbx-article-head">
-    {{- if not .Date.IsZero }}
-    <div class="dbx-article-head__meta">
-      <span class="date">{{ .Date.Format "2006-01-02" }}</span>
-    </div>
+  <article>
+    <h1 class="title">{{ .Title }}</h1>
+    {{- if or (not .Date.IsZero) .Description }}
+    <p class="meta">
+      {{- if not .Date.IsZero }}{{ .Date.Format "January 2 2006" }}{{ if .ReadingTime }}, {{ .ReadingTime }} minute read{{ end }}{{ end -}}
+    </p>
     {{- end }}
-    <h1 class="dbx-article-head__title">{{ .Title }}</h1>
-    {{- with .Description }}
-    <p class="dbx-article-head__desc">{{ . }}</p>
-    {{- end }}
-  </header>
-
-  <article class="dbx-prose">
+    {{- with .Description }}<p>{{ . }}</p>{{ end }}
     {{ .Content }}
   </article>
+  {{- if or .PrevInSection .NextInSection }}
+  <nav class="prevnext" aria-label="more">
+    {{- with .PrevInSection }}<a href="{{ .RelPermalink }}">Older: {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{- with .NextInSection }}<a href="{{ .RelPermalink }}">Newer: {{ .Title }}</a>{{ end }}
+  </nav>
+  {{- end }}
 {{ end }}

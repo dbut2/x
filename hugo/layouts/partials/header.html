@@ -1,29 +1,28 @@
-{{- $path := strings.Trim .RelPermalink "/" -}}
-{{- $segs := slice -}}
-{{- if $path }}{{ $segs = split $path "/" }}{{ end -}}
-{{- $last := sub (len $segs) 1 -}}
-
-<header class="dbx-topbar">
-  <nav class="dbx-term">
-    <span class="dbx-term__ps1">$&nbsp;</span>
-    {{- if eq (len $segs) 0 -}}
-      <span class="dbx-term__current">/home/dbut2</span>
-    {{- else -}}
-      <a href="{{ "/" | relURL }}" class="dbx-term__seg">/home/dbut2</a>
-      {{- $accum := "" -}}
-      {{- range $i, $seg := $segs -}}
-        {{- $accum = printf "%s/%s" $accum $seg -}}
-        {{- $display := $seg -}}
-        {{- if eq $seg "blog" }}{{ $display = "writing" }}{{ end -}}
-        {{- if eq $seg "photography" }}{{ $display = "photos" }}{{ end -}}
-        {{- if eq $seg "travel" }}{{ $display = ".travels" }}{{ end -}}
-        {{- if eq $i $last -}}
-          <span class="dbx-term__sep">/</span><span class="dbx-term__current">{{ $display }}</span>{{ if $.IsPage }}<span class="dbx-term__ext">.md</span>{{ end }}
-        {{- else -}}
-          <span class="dbx-term__sep">/</span><a href="{{ $accum | relURL }}" class="dbx-term__seg">{{ $display }}</a>
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}
-    <span class="dbx-term__cursor">█</span>
+{{- $name := .Site.Params.name | default .Site.Title -}}
+{{- $menu := .Site.Menus.main -}}
+{{- if not $menu -}}
+  {{- $menu = slice
+    (dict "Name" "home" "URL" "/")
+    (dict "Name" "writing" "URL" "/blog/")
+    (dict "Name" "photos" "URL" "/photography/")
+    (dict "Name" "travel" "URL" "/travel/")
+    (dict "Name" "projects" "URL" "/projects/")
+  -}}
+{{- end -}}
+{{- $here := .RelPermalink -}}
+<header>
+  {{- if .IsHome }}
+  <h1 class="name">{{ $name }}</h1>
+  {{- else }}
+  <p class="name"><a href="{{ "/" | relURL }}">{{ $name }}</a></p>
+  {{- end }}
+  <nav aria-label="site">
+    <ul class="nav">
+      {{- range $menu }}
+        {{- $url := .URL -}}
+        {{- $current := or (eq $here $url) (and (ne $url "/") (hasPrefix $here $url)) -}}
+        <li><a href="{{ $url | relURL }}"{{ if $current }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
   </nav>
 </header>

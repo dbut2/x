@@ -1,0 +1,7 @@
+{{ define "main" }}
+  <article>
+    <h1 class="title">{{ if .Title }}{{ .Title }}{{ else if not .Date.IsZero }}{{ .Date.Format "January 2 2006" }}{{ end }}</h1>
+    {{- if and .Title (not .Date.IsZero) }}<p class="meta">{{ .Date.Format "January 2 2006" }}</p>{{ end }}
+    {{ .Content }}
+  </article>
+{{ end }}

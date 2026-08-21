@@ -1,24 +1,20 @@
 {{- $src := .Destination -}}
-{{- $alt := .Text -}}
-{{- $caption := .Title -}}
-{{- $page := .Page -}}
-
-{{- /* Resolve bundle-relative src via page resources, else fall back. */ -}}
-{{- $href := $src -}}
-{{- with $page.Resources.GetMatch $src -}}
-  {{- $href = .RelPermalink -}}
-{{- end -}}
-
-{{- /* Inline context (image inside a sentence): emit just <img> so we
-       don't produce invalid <p><figure></p> nesting. Block context
-       (image on its own line): emit a full <figure>. */ -}}
-{{- if .IsBlock -}}
-<figure>
-  <img src="{{ $href | safeURL }}" alt="{{ $alt }}"{{ with $caption }} title="{{ . }}"{{ end }} loading="lazy">
-  {{- with $caption }}
-  <figcaption>{{ . }}</figcaption>
-  {{- end }}
-</figure>
+{{- $alt := .PlainText -}}
+{{- $title := .Title -}}
+{{- with .Page.Resources.GetMatch $src -}}
+  {{- if eq .ResourceType "image" -}}
+    {{- $img := . -}}
+    {{- if gt .Width 716 -}}
+      {{- $img = .Resize "716x q82" -}}
+    {{- end -}}
+    <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy"{{ if lt $img.Width 480 }} class="pixel"{{ end }}{{ with $title }} title="{{ . }}"{{ end }}>
+  {{- else -}}
+    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
+  {{- end -}}
 {{- else -}}
-<img src="{{ $href | safeURL }}" alt="{{ $alt }}"{{ with $caption }} title="{{ . }}"{{ end }} loading="lazy">
+  {{- with resources.Get $src -}}
+    <img src="{{ .RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}>
+  {{- else -}}
+    <img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}>
+  {{- end -}}
 {{- end -}}

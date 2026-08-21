@@ -4,3 +4,5 @@ module:
       target: layouts
     - source: hugo/static
       target: static
+    - source: hugo/assets
+      target: assets
