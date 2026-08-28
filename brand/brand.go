@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-//go:generate cp src/plain.css ../hugo/static/plain.css
-
 //go:embed src/*.css
 var src embed.FS
 

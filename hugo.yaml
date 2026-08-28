@@ -6,3 +6,5 @@ module:
       target: static
     - source: hugo/assets
       target: assets
+    - source: brand/src/plain.css
+      target: static/plain.css
