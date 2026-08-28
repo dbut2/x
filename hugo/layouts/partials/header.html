@@ -10,9 +10,22 @@
   -}}
 {{- end -}}
 {{- $here := .RelPermalink -}}
+{{- $greeting := .Site.Params.greeting | default dict -}}
+{{- $lines := $greeting.lines | default slice -}}
 <header>
   {{- if .IsHome }}
+    {{- if $lines }}
+      {{- $first := index $lines 0 -}}
+      {{- $interval := $greeting.interval | default 3400 -}}
+      {{- $fade := $greeting.fade | default 280 -}}
+  <h1 class="name" lang="{{ $first.lang }}" aria-label="{{ $first.text }}"
+      style="--greeting-fade: {{ $fade }}ms"
+      data-dbx-greeting="{{ jsonify $lines }}"
+      data-dbx-greeting-interval="{{ $interval }}"
+      data-dbx-greeting-fade="{{ $fade }}">{{ $first.text }}</h1>
+    {{- else }}
   <h1 class="name">{{ $name }}</h1>
+    {{- end }}
   {{- else }}
   <p class="name"><a href="{{ "/" | relURL }}">{{ $name }}</a></p>
   {{- end }}

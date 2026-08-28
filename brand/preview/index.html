@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plain variants</title>
+<link rel="stylesheet" href="../../hugo/static/plain.css">
+<link rel="stylesheet" id="variant" href="">
+<style>
+  body { padding-top: 46px; }
+  .bar { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px;
+         padding: 7px 14px; background: var(--paper); border-bottom: 1px solid var(--rule);
+         font: 12px/1 var(--mono); color: var(--ink-3); }
+  .bar b { font-weight: normal; color: var(--ink-3); letter-spacing: .04em; }
+  .bar .grp { display: flex; gap: 4px; align-items: center; }
+  .bar button { font: 12px/1 var(--mono); color: var(--ink-2); background: var(--paper);
+                border: 1px solid var(--rule); border-radius: 5px; padding: 5px 9px; cursor: pointer; }
+  .bar button:hover { color: var(--ink); }
+  .bar button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .bar .readout { margin-left: auto; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .bar a { color: var(--ink-3); }
+  .pg { min-height: 100vh; border-top: 1px dashed var(--rule); position: relative; }
+  .pg:first-of-type { border-top: 0; }
+  .pglabel { position: absolute; top: 10px; left: 14px; font: 11px/1 var(--mono); color: var(--ink-3); opacity: .7; }
+  .pg .page { padding: 44px 24px 64px; }
+  .lead-h2 { margin-top: 18px; }
+  .sub { margin-top: 6px; color: var(--ink-2); }
+  @media (prefers-reduced-motion: no-preference) { button { transition: background 120ms ease-out; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <span class="grp"><b>theme</b>
+    <button data-v="plain" aria-pressed="true">plain</button>
+    <button data-v="reader" aria-pressed="false">reader</button>
+    <button data-v="hyperlegible" aria-pressed="false">hyperlegible</button>
+    <button data-v="console" aria-pressed="false">console</button>
+    <button data-v="nightshift" aria-pressed="false">nightshift</button>
+  </span>
+  <span class="grp"><b>mode</b>
+    <button data-m="auto" aria-pressed="true">auto</button>
+    <button data-m="light" aria-pressed="false">light</button>
+    <button data-m="dark" aria-pressed="false">dark</button>
+  </span>
+  <span class="readout" id="readout"></span>
+  <a href="notes.html">notes</a>
+</div>
+<section class="pg" id="home"><span class="pglabel">page: home</span><div class="page"><h1 class="name">Dylan Butler</h1><nav aria-label="site"><ul class="nav"><li><a href="#home" aria-current="page">home</a></li><li><a href="#writing">writing</a></li><li><a href="#photos">photos</a></li><li><a href="#travel">travel</a></li><li><a href="#projects">projects</a></li><li><a href="#home">rss</a></li></ul></nav><p class="tag">Software engineer in Melbourne. I write some code, take some photos, and sometimes write about it too. Find me on <a href="#home">GitHub</a>, <a href="#home">LinkedIn</a> or by <a href="#home">email</a>.</p><div class="note"><b>Now:</b> another year of self-hosting written up, a GBA emulator that mostly boots, and 39 pictures from China waiting for captions.</div><hr><h2>Writing</h2><ul><li><a href="#article">Another year on: self-hosting</a><span class="dt">August 20 2026</span></li><li><a href="#article">Protect your shed</a><span class="dt">April 8 2026</span></li><li><a href="#article">Building a GBA emulator in Go</a><span class="dt">February 16 2026</span></li><li><a href="#article">12 months on: self-hosting</a><span class="dt">May 30 2025</span></li><li><a href="#article">Adding GPUs to Docker Swarm and running GPU-enabled services</a><span class="dt">September 26 2024</span></li><li><a href="#writing">All posts</a></li></ul><hr><h2>Photos</h2><ul><li><a href="#roll">China 2026</a><span class="dt">April 27 2026</span></li><li><a href="#roll">Japan in film 2025</a><span class="dt">February 10 2025</span></li><li><a href="#photos">All albums</a></li></ul><hr><h2>Projects</h2><ul><li><a href="#projects">sapphire</a> - GBA emulator written in Go</li><li><a href="#projects">coach</a> - AI running coach</li><li><a href="#projects">commuter</a> - Strava activity automation</li><li><a href="#projects">web template</a> - Opinionated base for Go/Postgres/HTML projects</li><li><a href="#projects">All projects</a></li></ul><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></div></section><section class="pg" id="writing"><span class="pglabel">page: writing index</span><div class="page"><p class="name"><a href="#home">Dylan Butler</a></p><nav aria-label="site"><ul class="nav"><li><a href="#home">home</a></li><li><a href="#writing" aria-current="page">writing</a></li><li><a href="#photos">photos</a></li><li><a href="#travel">travel</a></li><li><a href="#projects">projects</a></li><li><a href="#home">rss</a></li></ul></nav><h2 class="lead-h2">Writing</h2><p class="yr">2026</p><ul><li><a href="#article">Another year on: self-hosting</a><span class="dt">August 20 2026</span></li><li><a href="#article">Protect your shed</a><span class="dt">April 8 2026</span></li><li><a href="#article">Building a GBA emulator in Go</a><span class="dt">February 16 2026</span></li></ul><p class="yr">2025</p><ul><li><a href="#article">12 months on: self-hosting</a><span class="dt">May 30 2025</span></li></ul><p class="yr">2024</p><ul><li><a href="#article">Adding GPUs to Docker Swarm and running GPU-enabled services</a><span class="dt">September 26 2024</span></li><li><a href="#article">App debugging not in prod</a><span class="dt">June 6 2024</span></li><li><a href="#article">Self-dependant, self-hosted GitHub runners</a><span class="dt">June 5 2024</span></li><li><a href="#article">Go range over funcs</a><span class="dt">May 14 2024</span></li><li><a href="#article">Self-hosted traffic ingress</a><span class="dt">May 13 2024</span></li></ul><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></div></section><section class="pg" id="article"><span class="pglabel">page: article</span><div class="page"><p class="name"><a href="#home">Dylan Butler</a></p><nav aria-label="site"><ul class="nav"><li><a href="#home">home</a></li><li><a href="#writing" aria-current="page">writing</a></li><li><a href="#photos">photos</a></li><li><a href="#travel">travel</a></li><li><a href="#projects">projects</a></li><li><a href="#home">rss</a></li></ul></nav><article><h1 class="title">Protect your shed</h1><p class="meta">April 8 2026, 6 minute read</p><p>Constructing a skyscraper is a massive undertaking. You need architectural blueprints, council permits, and safety audits before the first piece of steel is even ordered. It requires hundreds of people coordinating over months or years. You can't just throw up some drywall and hope the building holds weight.</p><p>Then there is the backyard shed. No blueprints, no permits, no audits. You just grab some timber, a saw, and start hammering. It might be a little drafty, and the roof might leak if it rains too hard, but you built it yourself in a single weekend.</p><p>For the last six years, my life as an engineer was split between these two modes. By day, I was building banking systems at enterprise scale. By night, I was in the shed, building whatever I felt like. Side projects that sometimes went somewhere and sometimes didn't.</p><p>It is easy to view these as two separate lives: the work you do for a paycheck and the work you do for fun. But looking back on this chapter of my career, I've realised something fundamental. The enterprise work taught me how to engineer at scale, but it was the personal projects that kept me an engineer.</p><h2>Learning the physics of scale</h2><p>Early on, what stands out is how much of the work isn't actually writing code. There are design documents, test plans, architecture reviews. It can feel like the actual building part is a fraction of the job.</p><p>But that surrounding work is what makes the building possible at scale. When you're processing the volume of transactions a major bank handles, you can't skip the design phase or cut corners on testing. Each of those steps exists because someone before you learned the hard way what happens without it.</p><p>To see what a node has:</p><pre>nvidia-smi --query-gpu=name,uuid --format=csv,noheader
+NVIDIA GeForce RTX 3060, GPU-1618bfaf-6d19-3538-d138-dcbd3c405ace</pre><h2>Taking the blueprint home</h2><p>The shed is where you take the blueprints you learned on the job and actually get to play with them. You don't have a change board, so you can rip out the database on a Tuesday night. You don't have an SLA, so the roof can leak for a week while you work out why.</p><p>I've always told younger developers that maintaining side projects will do more for your career than any amount of interview prep and LeetCode will.</p><div class="prevnext"><a href="#article">Older: Building a GBA emulator in Go</a><a href="#article">Newer: Another year on: self-hosting</a></div><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></article></div></section><section class="pg" id="photos"><span class="pglabel">page: photos index</span><div class="page"><p class="name"><a href="#home">Dylan Butler</a></p><nav aria-label="site"><ul class="nav"><li><a href="#home">home</a></li><li><a href="#writing">writing</a></li><li><a href="#photos" aria-current="page">photos</a></li><li><a href="#travel">travel</a></li><li><a href="#projects">projects</a></li><li><a href="#home">rss</a></li></ul></nav><h2 class="lead-h2">Photos</h2><p class="yr">2026</p><ul><li><a href="#roll">China 2026</a><span class="dt">April 27 2026</span></li></ul><p class="yr">2025</p><ul><li><a href="#roll">Japan in film 2025</a><span class="dt">February 10 2025</span></li></ul><p class="yr">2023</p><ul><li><a href="#roll">Japan in film 2023</a><span class="dt">August 14 2023</span></li></ul><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></div></section><section class="pg" id="roll"><span class="pglabel">page: photo roll</span><div class="page"><p class="name"><a href="#home">Dylan Butler</a></p><nav aria-label="site"><ul class="nav"><li><a href="#home">home</a></li><li><a href="#writing">writing</a></li><li><a href="#photos" aria-current="page">photos</a></li><li><a href="#travel">travel</a></li><li><a href="#projects">projects</a></li><li><a href="#home">rss</a></li></ul></nav><article><h1 class="title">Japan in film 2025</h1><p class="meta">February 10 2025, 5 pictures on 35mm film</p><p>A short escape from home's warm weather to the cold of Tokyo, Mt Fuji, and the snowy quiet of Sapporo.</p><div class="sheet"><figure><img src="img/cfcfddea4f.jpg" alt=""><figcaption>Sapporo</figcaption></figure><figure><img src="img/d219c335cd.jpg" alt=""><figcaption>Sapporo</figcaption></figure><figure><img src="img/4a4c2d5cd1.jpg" alt=""><figcaption>Sapporo</figcaption></figure><figure><img src="img/48d1eb1429.jpg" alt=""><figcaption>Tokyo</figcaption></figure><figure><img src="img/e946c75736.jpg" alt=""><figcaption>Mt Fuji</figcaption></figure></div><div class="prevnext"><a href="#roll">Earlier: Japan in film 2023</a><a href="#roll">Later: China 2026</a></div><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></article></div></section><section class="pg" id="projects"><span class="pglabel">page: projects</span><div class="page"><p class="name"><a href="#home">Dylan Butler</a></p><nav aria-label="site"><ul class="nav"><li><a href="#home">home</a></li><li><a href="#writing">writing</a></li><li><a href="#photos">photos</a></li><li><a href="#travel">travel</a></li><li><a href="#projects" aria-current="page">projects</a></li><li><a href="#home">rss</a></li></ul></nav><h2 class="lead-h2">Projects</h2><p class="sub">Some of the things I've been working on. Mostly Go, Docker, Postgres.</p><ul><li><a href="#projects">sapphire</a> - GBA emulator written in Go</li><li><a href="#projects">coach</a> - AI running coach</li><li><a href="#projects">commuter</a> - Strava activity automation</li><li><a href="#projects">web template</a> - Opinionated base for Go/Postgres/HTML projects</li><li><a href="#projects">advent of code</a> - Go solutions + framework and library of helpers</li><li><a href="#projects">butla</a> - Simple URL shortener</li><li><a href="#projects">float</a> - Envelope budgeting</li></ul><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></div></section><section class="pg" id="travel"><span class="pglabel">page: travel</span><div class="page"><p class="name"><a href="#home">Dylan Butler</a></p><nav aria-label="site"><ul class="nav"><li><a href="#home">home</a></li><li><a href="#writing">writing</a></li><li><a href="#photos">photos</a></li><li><a href="#travel" aria-current="page">travel</a></li><li><a href="#projects">projects</a></li><li><a href="#home">rss</a></li></ul></nav><h2 class="lead-h2">Travel</h2><p class="yr">Japan 2025</p><ul><li><a href="#travel">Leg Amputation</a><span class="dt">November 8 2025</span></li><li><a href="#travel">Back on the road</a><span class="dt">November 7 2025</span></li><li><a href="#travel">Stranded in Takashima</a><span class="dt">November 5 2025</span></li><li><a href="#travel">Ah, the serenity!</a><span class="dt">November 4 2025</span></li><li><a href="#travel">The Plains of Shiga</a><span class="dt">November 3 2025</span></li><li><a href="#travel">The Mighty Hills of Otanacho</a><span class="dt">November 2 2025</span></li><li><a href="#travel">Tilted Tokyo</a><span class="dt">November 1 2025</span></li><li><a href="#travel">Matsushima and a cruise in the ocean</a><span class="dt">October 27 2025</span></li><li><a href="#travel">The great migration</a><span class="dt">October 26 2025</span></li><li><a href="#travel">devhouse 2!!!</a><span class="dt">October 20 2025</span></li></ul><p class="yr">Japan 2024</p><ul><li><a href="#travel">April 2 2024</a><span class="dt">April 2 2024</span></li><li><a href="#travel">April 1 2024</a><span class="dt">April 1 2024</span></li><li><a href="#travel">March 31 2024</a><span class="dt">March 31 2024</span></li><li><a href="#travel">March 30 2024</a><span class="dt">March 30 2024</span></li><li><a href="#travel">March 29 2024</a><span class="dt">March 29 2024</span></li><li><a href="#travel">March 28 2024</a><span class="dt">March 28 2024</span></li><li><a href="#travel">March 24 2024</a><span class="dt">March 24 2024</span></li><li><a href="#travel">March 23 2024</a><span class="dt">March 23 2024</span></li><li><a href="#travel">March 22 2024</a><span class="dt">March 22 2024</span></li></ul><hr><p class="foot">Melbourne, Australia. <a href="#home">RSS</a>. <a href="#home">Source</a>. Last updated August 20 2026.</p></div></section><script>
+const link = document.getElementById('variant');
+const readout = document.getElementById('readout');
+const store = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const load = (k, d) => { try { return localStorage.getItem(k) || d; } catch (e) { return d; } };
+
+function setVariant(v) {
+  if (v === 'plain') link.removeAttribute('href');
+  else link.setAttribute('href', '../src/variants/' + v + '.css');
+  document.querySelectorAll('[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  store('variant', v);
+  setTimeout(measure, 60);
+  if (document.fonts) document.fonts.ready.then(measure);
+}
+function setMode(m) {
+  if (m === 'auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', m);
+  document.querySelectorAll('[data-m]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.m === m)));
+  store('mode', m);
+}
+function measure() {
+  const p = document.querySelector('#home .tag');
+  if (!p) return;
+  const cs = getComputedStyle(p);
+  const ctx = document.createElement('canvas').getContext('2d');
+  ctx.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+  const s = 'Software engineer in Melbourne. I write some code, take some photos, and sometimes write about it too.';
+  const avg = ctx.measureText(s).width / s.length;
+  const chars = Math.round(p.clientWidth / avg);
+  const fam = cs.fontFamily.split(',')[0].replace(/["']/g, '');
+  readout.textContent = fam + ' ' + cs.fontSize + ' / line-height ' + (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2) + ' / ' + chars + ' characters per line';
+}
+document.querySelectorAll('[data-v]').forEach(b => b.addEventListener('click', () => setVariant(b.dataset.v)));
+document.querySelectorAll('[data-m]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.m)));
+setMode(load('mode', 'auto'));
+setVariant(load('variant', 'plain'));
+addEventListener('resize', measure);
+</script>
+</body>
+</html>

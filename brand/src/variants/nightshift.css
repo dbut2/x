@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..700;1,400&display=swap");
+:root {
+  --paper: #fafafb;
+  --ink: #1b1d22;
+  --ink-2: #565a63;
+  --ink-3: #666b75;
+  --rule: #e0e2e7;
+  --card: #f1f2f4;
+  --note: #eef1f7;
+  --code: #f0f1f4;
+  --code-rule: #dfe1e6;
+  --link: #2b5bd7;
+  --link-visited: #7239b3;
+  --link-hover: #1f45ac;
+  --focus: #2b5bd7;
+  --font: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --weight: 400;
+  --size: 1rem;
+  --size-sm: .875rem;
+  --size-xs: .8125rem;
+  --size-h1: 1.375rem;
+  --size-h2: 1.09rem;
+  --leading: 1.62;
+  --measure: 32.1em;
+  --radius: 10px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121317; --ink: #e3e5e9; --ink-2: #bcc0c9; --ink-3: #b2b7c1; --rule: #2b2e35;
+    --card: #191b20; --note: #1a1f2b; --code: #16181d; --code-rule: #2b2e35;
+    --link: #9dbcff; --link-visited: #cfaef7; --link-hover: #bdd2ff; --focus: #9dbcff;
+    --weight: 350;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121317; --ink: #e3e5e9; --ink-2: #bcc0c9; --ink-3: #b2b7c1; --rule: #2b2e35;
+  --card: #191b20; --note: #1a1f2b; --code: #16181d; --code-rule: #2b2e35;
+  --link: #9dbcff; --link-visited: #cfaef7; --link-hover: #bdd2ff; --focus: #9dbcff;
+  --weight: 350;
+}
+body { font-weight: var(--weight); }
+a { text-underline-offset: 2px; }
+h1, h2, h3, h4, .title, .name, .yr { font-weight: 650; }
+h1, h2, h3, .title { letter-spacing: -.015em; text-wrap: balance; }
+.card, .note { border-color: transparent; }
+.dt, .card .t span { font-variant-numeric: tabular-nums; }
+.sheet img, .strip img { border-color: transparent; }
