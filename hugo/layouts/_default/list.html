@@ -1,18 +1,8 @@
 {{ define "main" }}
-  <header class="dbx-article-head">
-    <h1 class="dbx-article-head__title">{{ .Title | lower }}</h1>
-    {{- with .Description }}
-    <p class="dbx-article-head__desc">{{ . }}</p>
-    {{- end }}
-  </header>
-
-  <section class="dbx-section">
-    {{- range .Pages.ByDate.Reverse }}
-      <a class="dbx-row" href="{{ .RelPermalink }}">
-        <span class="dbx-row__lead">{{ if not .Date.IsZero }}{{ .Date.Format "2006-01-02" }}{{ end }}</span>
-        <span class="dbx-row__title">{{ .Title | lower }}</span>
-        <span class="dbx-row__arrow">→</span>
-      </a>
-    {{- end }}
-  </section>
+  <h2>{{ .Title }}</h2>
+  {{- with .Description }}
+  <p>{{ . }}</p>
+  {{- end }}
+  {{- with .Content }}{{ . }}{{ end }}
+  {{ partial "post-list.html" (dict "pages" .Pages.ByDate.Reverse "years" true) }}
 {{ end }}

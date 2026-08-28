@@ -6,15 +6,13 @@ import (
 	"net/http"
 )
 
-//go:generate npx @tailwindcss/cli -i src/app.css -o dist/dbx.css --minify
-
-//go:embed dist/*
-var dist embed.FS
+//go:embed src/*.css
+var src embed.FS
 
 var Dist http.FileSystem
 
 func init() {
-	f, err := fs.Sub(dist, "dist")
+	f, err := fs.Sub(src, "src")
 	if err != nil {
 		panic(err.Error())
 	}

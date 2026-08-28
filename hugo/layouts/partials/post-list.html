@@ -1,0 +1,18 @@
+{{- /* .pages, .years (bool) */ -}}
+{{- $pages := .pages -}}
+{{- if .years }}
+  {{- range $pages.GroupByDate "2006" }}
+  <p class="yr">{{ .Key }}</p>
+  <ul>
+    {{- range .Pages }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ if not .Date.IsZero }}<span class="dt">{{ .Date.Format "January 2 2006" }}</span>{{ end }}</li>
+    {{- end }}
+  </ul>
+  {{- end }}
+{{- else }}
+  <ul>
+    {{- range $pages }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ if not .Date.IsZero }}<span class="dt">{{ .Date.Format "January 2 2006" }}</span>{{ end }}</li>
+    {{- end }}
+  </ul>
+{{- end }}

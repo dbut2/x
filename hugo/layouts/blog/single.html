@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <article>
+    <h1 class="title">{{ .Title }}</h1>
+    <p class="meta">{{ if not .Date.IsZero }}{{ .Date.Format "January 2 2006" }}, {{ end }}{{ .ReadingTime }} minute read</p>
+    {{- with .Description }}<p>{{ . }}</p>{{ end }}
+    {{- with .Params.cover }}{{ with .image }}
+      {{- $img := or ($.Resources.GetMatch .) (resources.Get .) }}
+      {{- with $img }}
+        {{- if gt .Width 1240 }}{{ $img = .Resize "1240x q82" }}{{ end }}
+    <figure class="cover"><img src="{{ $img.RelPermalink }}" alt="" width="{{ $img.Width }}" height="{{ $img.Height }}"></figure>
+      {{- end }}
+    {{- end }}{{ end }}
+    {{ .Content }}
+  </article>
+  {{- if or .PrevInSection .NextInSection }}
+  <nav class="prevnext" aria-label="more">
+    {{- with .PrevInSection }}<a href="{{ .RelPermalink }}">Older: {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{- with .NextInSection }}<a href="{{ .RelPermalink }}">Newer: {{ .Title }}</a>{{ end }}
+  </nav>
+  {{- end }}
+{{ end }}

@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <h1 class="title">{{ .Title }}</h1>
+  {{- if not .Date.IsZero }}<p class="meta">{{ .Date.Format "January 2 2006" }}</p>{{ end }}
+  {{- with .Description }}<p>{{ . }}</p>{{ end }}
+  {{ .Content }}
+  {{- range .Pages.ByDate.Reverse }}
+  <section class="day" id="{{ path.Base .RelPermalink }}">
+    <hr>
+    <h2><a href="{{ .RelPermalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .Date.Format "January 2 2006" }}{{ end }}</a></h2>
+    {{- if .Title }}<p class="meta">{{ .Date.Format "January 2 2006" }}</p>{{ end }}
+    {{ .Content }}
+  </section>
+  {{- end }}
+{{ end }}
