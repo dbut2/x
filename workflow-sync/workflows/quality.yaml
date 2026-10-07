@@ -24,7 +24,7 @@ permissions:
 jobs:
 [[- if not .Gomods ]]
   find-gomods:
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
     outputs:
       matrix: ${{ steps.finder.outputs.matrix }}
     steps:
@@ -36,7 +36,7 @@ jobs:
 [[ end ]]
   test:
     name: Go Test
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
 [[- template "gomod-matrix" . ]]
     steps:
       - uses: actions/checkout@v7
@@ -50,7 +50,7 @@ jobs:
 
   lint:
     name: golangci-lint
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
 [[- template "gomod-matrix" . ]]
     steps:
       - uses: actions/checkout@v7
@@ -65,7 +65,7 @@ jobs:
 
   build:
     name: Build Check
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
 [[- template "gomod-matrix" . ]]
     steps:
       - uses: actions/checkout@v7
@@ -79,7 +79,7 @@ jobs:
 
   tidy:
     name: Go Mod Tidy
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
 [[- template "gomod-matrix" . ]]
     steps:
       - uses: actions/checkout@v7
@@ -93,7 +93,7 @@ jobs:
 
   generate:
     name: Go Generate
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
 [[- template "gomod-matrix" . ]]
     steps:
       - uses: actions/checkout@v7
