@@ -9,7 +9,7 @@ on:
 
 jobs:
   automerge:
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
     permissions:
       checks: read
     if: |

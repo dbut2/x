@@ -26,6 +26,7 @@ type target struct {
 	Bundles []string `yaml:"bundles"`
 	Checks  []string `yaml:"checks"`
 	Gomods  []string `yaml:"gomods"`
+	RunsOn  string   `yaml:"runs-on"`
 }
 
 type manifest struct {
@@ -95,7 +96,11 @@ func render(m manifest, repo, out string) {
 	if len(checks) == 0 {
 		checks = m.Defaults.Checks
 	}
-	data := map[string]any{"Checks": checks, "Gomods": t.Gomods}
+	runsOn := t.RunsOn
+	if runsOn == "" {
+		runsOn = "ubuntu-latest"
+	}
+	data := map[string]any{"Checks": checks, "Gomods": t.Gomods, "RunsOn": runsOn}
 	if len(t.Gomods) > 0 {
 		b, err := json.Marshal(t.Gomods)
 		if err != nil {
