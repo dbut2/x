@@ -109,7 +109,7 @@ jobs:
 
   compose:
     name: Docker Compose
-    runs-on: ubuntu-latest
+    runs-on: [[ .RunsOn ]]
     steps:
       - uses: actions/checkout@v7
       - run: docker compose build
