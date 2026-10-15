@@ -24,23 +24,18 @@ jobs:
           go-version-file: [[ .Gomod ]]
       - run: go mod download
       - name: Build
-        if: ${{ !cancelled() }}
         run: go build ./...
       - name: Test
-        if: ${{ !cancelled() }}
         run: go test -v ./...
       - name: Generate
-        if: ${{ !cancelled() }}
         run: |
           go generate ./...
           git diff --exit-code
       - name: Tidy
-        if: ${{ !cancelled() }}
         run: |
           go mod tidy
           git diff --exit-code go.mod go.sum
       - name: Lint
-        if: ${{ !cancelled() }}
         uses: golangci/golangci-lint-action@v9
         with:
           working-directory: [[ .GomodDir ]]
