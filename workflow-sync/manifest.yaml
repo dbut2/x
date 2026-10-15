@@ -8,12 +8,8 @@ bundles:
 
 defaults:
   checks:
-    - Build Check
     - Docker Compose
-    - Go Generate
-    - Go Mod Tidy
-    - Go Test
-    - golangci-lint
+    - Go Quality
 
 targets:
   dbut2/bolt:
@@ -37,15 +33,9 @@ targets:
       - go-quality
       - automerge
       - publish
-    gomods:
-      - .
     runs-on: self-hosted
     checks:
-      - Build Check
-      - Go Generate
-      - Go Mod Tidy
-      - Go Test
-      - golangci-lint
+      - Go Quality
   dbut2/coach:
     bundles:
       - automerge
