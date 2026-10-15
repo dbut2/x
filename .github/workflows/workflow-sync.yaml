@@ -7,6 +7,10 @@ on:
     paths:
       - workflow-sync/**
       - .github/workflows/workflow-sync.yaml
+  pull_request:
+    paths:
+      - workflow-sync/**
+      - .github/workflows/workflow-sync.yaml
   workflow_dispatch:
 
 permissions:
@@ -61,7 +65,28 @@ jobs:
       - name: Render
         run: go run ./workflow-sync render "${{ matrix.repo }}" target
 
+      - name: Diff
+        if: github.event_name == 'pull_request'
+        env:
+          REPO: ${{ matrix.repo }}
+        working-directory: target
+        run: |
+          git add -A
+          diff=$(git diff --cached)
+          echo "${diff:-No changes}"
+          {
+            echo "### $REPO"
+            if [ -n "$diff" ]; then
+              echo '```diff'
+              echo "$diff"
+              echo '```'
+            else
+              echo 'No changes'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Create pull request
+        if: github.event_name != 'pull_request'
         uses: peter-evans/create-pull-request@v8
         with:
           path: target
