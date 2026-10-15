@@ -22,6 +22,7 @@ targets:
       - go-quality
   dbut2/bolt:
     bundles:
+      - go-quality
       - automerge
   dbut2/commuter:
     bundles:
