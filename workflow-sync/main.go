@@ -105,10 +105,13 @@ func render(m manifest, repo, out string) {
 		bundles = append(bundles, b)
 	}
 
-	checks := t.Checks
-	if len(checks) == 0 {
-		for _, b := range bundles {
-			checks = append(checks, b.Checks...)
+	var checks []string
+	for _, b := range bundles {
+		checks = append(checks, b.Checks...)
+	}
+	for _, c := range t.Checks {
+		if !slices.Contains(checks, c) {
+			checks = append(checks, c)
 		}
 	}
 	runsOn := t.RunsOn
