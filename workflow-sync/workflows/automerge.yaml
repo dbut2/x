@@ -24,7 +24,7 @@ jobs:
           client-id: ${{ secrets.GH_CLIENT_ID }}
           private-key: ${{ secrets.GH_PRIVATE_KEY }}
 
-      - name: Get PR head SHA
+[[ if .Checks ]]      - name: Get PR head SHA
         id: pr-sha
         env:
           GH_TOKEN: ${{ steps.token.outputs.token }}
@@ -46,7 +46,7 @@ jobs:
           poll_frequency_seconds: 10
           missing_required_retry_count: 10
 
-      - name: Enable auto-merge
+[[ end ]]      - name: Enable auto-merge
         uses: nick-fields/retry@v4
         with:
           timeout_minutes: 5
