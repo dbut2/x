@@ -1,0 +1,41 @@
+name: Go Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  go:
+    name: Go Quality
+    runs-on: [[ .RunsOn ]]
+    defaults:
+      run:
+        working-directory: [[ .GomodDir ]]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: [[ .Gomod ]]
+      - run: go mod download
+      - name: Build
+        run: go build ./...
+      - name: Test
+        run: go test -v ./...
+      - name: Generate
+        run: |
+          go generate ./...
+          git diff --exit-code
+      - name: Tidy
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod go.sum
+      - name: Lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          working-directory: [[ .GomodDir ]]

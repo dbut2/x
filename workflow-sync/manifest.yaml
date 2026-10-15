@@ -1,35 +1,43 @@
 bundles:
   go-quality:
-    - quality.yaml
+    files:
+      - quality-go.yaml
+    checks:
+      - Go Quality
+  compose:
+    files:
+      - quality-docker.yaml
+    checks:
+      - Docker Compose
   automerge:
-    - automerge.yaml
+    files:
+      - automerge.yaml
   publish:
-    - publish.yaml
-
-defaults:
-  checks:
-    - Build Check
-    - Docker Compose
-    - Go Generate
-    - Go Mod Tidy
-    - Go Test
-    - golangci-lint
+    files:
+      - publish.yaml
 
 targets:
+  dbut2/x:
+    bundles:
+      - go-quality
   dbut2/bolt:
     bundles:
+      - go-quality
       - automerge
   dbut2/commuter:
     bundles:
       - go-quality
+      - compose
       - automerge
   dbut2/float:
     bundles:
       - go-quality
+      - compose
       - automerge
   dbut2/web-template:
     bundles:
       - go-quality
+      - compose
       - automerge
       - publish
   dbut2/cordial:
@@ -37,15 +45,7 @@ targets:
       - go-quality
       - automerge
       - publish
-    gomods:
-      - .
     runs-on: self-hosted
-    checks:
-      - Build Check
-      - Go Generate
-      - Go Mod Tidy
-      - Go Test
-      - golangci-lint
   dbut2/coach:
     bundles:
       - automerge
