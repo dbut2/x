@@ -8,6 +8,7 @@ import (
 	"path"
 	"path/filepath"
 	"slices"
+	"strings"
 	"text/template"
 
 	"github.com/goccy/go-yaml"
@@ -19,8 +20,9 @@ var manifestData []byte
 //go:embed workflows
 var workflows embed.FS
 
-const header = "# DO NOT EDIT. Synced from dbut2/x\n" +
-	"# https://github.com/dbut2/x/blob/main/workflow-sync/workflows/%s\n\n"
+const marker = "# DO NOT EDIT. Synced from dbut2/x\n"
+
+const header = marker + "# https://github.com/dbut2/x/blob/main/workflow-sync/workflows/%s\n\n"
 
 type target struct {
 	Bundles []string `yaml:"bundles"`
@@ -29,11 +31,13 @@ type target struct {
 	RunsOn  string   `yaml:"runs-on"`
 }
 
+type bundle struct {
+	Files  []string `yaml:"files"`
+	Checks []string `yaml:"checks"`
+}
+
 type manifest struct {
-	Bundles  map[string][]string `yaml:"bundles"`
-	Defaults struct {
-		Checks []string `yaml:"checks"`
-	} `yaml:"defaults"`
+	Bundles map[string]bundle `yaml:"bundles"`
 	Targets map[string]target `yaml:"targets"`
 }
 
@@ -92,9 +96,20 @@ func render(m manifest, repo, out string) {
 		panic("unknown target: " + repo)
 	}
 
+	bundles := make([]bundle, 0, len(t.Bundles))
+	for _, name := range t.Bundles {
+		b, ok := m.Bundles[name]
+		if !ok {
+			panic("unknown bundle: " + name)
+		}
+		bundles = append(bundles, b)
+	}
+
 	checks := t.Checks
 	if len(checks) == 0 {
-		checks = m.Defaults.Checks
+		for _, b := range bundles {
+			checks = append(checks, b.Checks...)
+		}
 	}
 	runsOn := t.RunsOn
 	if runsOn == "" {
@@ -111,32 +126,58 @@ func render(m manifest, repo, out string) {
 		panic(err)
 	}
 
-	for _, bundle := range t.Bundles {
-		files, ok := m.Bundles[bundle]
-		if !ok {
-			panic("unknown bundle: " + bundle)
-		}
-		for _, file := range files {
-			b, err := workflows.ReadFile(path.Join("workflows", file))
-			if err != nil {
-				panic(err)
-			}
-			tmpl, err := template.New(file).Delims("[[", "]]").Parse(string(b))
-			if err != nil {
-				panic(err)
-			}
-			f, err := os.Create(filepath.Join(dst, file))
-			if err != nil {
-				panic(err)
-			}
-			if _, err := fmt.Fprintf(f, header, file); err != nil {
-				panic(err)
-			}
-			if err := tmpl.Execute(f, data); err != nil {
-				panic(err)
-			}
-			f.Close()
+	rendered := map[string]bool{}
+	for _, b := range bundles {
+		for _, file := range b.Files {
+			renderFile(dst, file, data)
+			rendered[file] = true
 			fmt.Fprintln(os.Stderr, "rendered", repo, "→", file)
 		}
+	}
+
+	entries, err := os.ReadDir(dst)
+	if err != nil {
+		panic(err)
+	}
+	for _, e := range entries {
+		if e.IsDir() || rendered[e.Name()] {
+			continue
+		}
+		p := filepath.Join(dst, e.Name())
+		b, err := os.ReadFile(p)
+		if err != nil {
+			panic(err)
+		}
+		if !strings.HasPrefix(string(b), marker) {
+			continue
+		}
+		if err := os.Remove(p); err != nil {
+			panic(err)
+		}
+		fmt.Fprintln(os.Stderr, "removed", repo, "→", e.Name())
+	}
+}
+
+func renderFile(dst, file string, data map[string]any) {
+	b, err := workflows.ReadFile(path.Join("workflows", file))
+	if err != nil {
+		panic(err)
+	}
+	tmpl, err := template.New(file).Delims("[[", "]]").Parse(string(b))
+	if err != nil {
+		panic(err)
+	}
+	f, err := os.Create(filepath.Join(dst, file))
+	if err != nil {
+		panic(err)
+	}
+	if _, err := fmt.Fprintf(f, header, file); err != nil {
+		panic(err)
+	}
+	if err := tmpl.Execute(f, data); err != nil {
+		panic(err)
+	}
+	if err := f.Close(); err != nil {
+		panic(err)
 	}
 }

@@ -6,8 +6,7 @@ import (
 	"net/http"
 )
 
-//go:generate templ generate
-//go:generate npx @tailwindcss/cli -i app.css -o static/style.css
+//go:generate go tool templ generate
 
 //go:embed static/*
 var static embed.FS

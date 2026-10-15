@@ -1,4 +1,4 @@
-name: Quality Checks
+name: Go Quality
 
 on:
   push:
@@ -44,10 +44,3 @@ jobs:
         uses: golangci/golangci-lint-action@v9
         with:
           working-directory: [[ .GomodDir ]]
-
-  compose:
-    name: Docker Compose
-    runs-on: [[ .RunsOn ]]
-    steps:
-      - uses: actions/checkout@v7
-      - run: docker compose build
