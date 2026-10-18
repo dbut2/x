@@ -19,6 +19,7 @@ bundles:
 targets:
   dbut2/x:
     bundles:
+      - automerge
       - go-quality
   dbut2/bolt:
     bundles:
