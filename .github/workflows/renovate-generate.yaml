@@ -10,6 +10,8 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     if: github.actor == 'renovate[bot]'
+    outputs:
+      changed: ${{ steps.commit.outputs.changes_detected }}
     defaults:
       run:
         working-directory: .
@@ -40,8 +42,10 @@ jobs:
           commit_user_email: 230545208+dylan-botler[bot]@users.noreply.github.com
           commit_author: dylan-botler[bot] <230545208+dylan-botler[bot]@users.noreply.github.com>
 
-      - if: steps.commit.outputs.changes_detected == 'true'
-        run: gh pr edit "$PR_URL" --add-label automerge
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.token.outputs.token }}
+  automerge:
+    needs: generate
+    if: needs.generate.outputs.changed == 'true'
+    permissions:
+      checks: read
+    uses: ./.github/workflows/automerge.yaml
+    secrets: inherit
