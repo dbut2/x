@@ -4,6 +4,7 @@
     "config:recommended"
   ],
   "schedule": ["on monday"],
+  "postUpdateOptions": ["gomodTidy"],
   "github-actions": {
     "managerFilePatterns": [
       "/^workflow-sync/workflows/.+\\.ya?ml$/"
@@ -12,9 +13,22 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "groupName": "all dependencies",
-      "groupSlug": "all"
+      "automerge": true
+    },
+    {
+      "matchManagers": ["gomod"],
+      "groupName": "go dependencies",
+      "groupSlug": "go"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "groupSlug": "github-actions"
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "npm dependencies",
+      "groupSlug": "npm"
     }
   ],
   "baseBranchPatterns": ["main"]
