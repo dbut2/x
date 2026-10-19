@@ -6,7 +6,6 @@ on:
     types: [labeled]
   issue_comment:
     types: [created]
-  workflow_call:
 
 jobs:
   automerge:
