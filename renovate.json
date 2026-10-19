@@ -4,7 +4,6 @@
     "config:recommended"
   ],
   "schedule": ["on monday"],
-  "postUpdateOptions": ["gomodTidy"],
   "github-actions": {
     "managerFilePatterns": [
       "/^workflow-sync/workflows/.+\\.ya?ml$/"
@@ -14,7 +13,8 @@
     {
       "matchManagers": ["gomod"],
       "groupName": "go dependencies",
-      "groupSlug": "go"
+      "groupSlug": "go",
+      "postUpdateOptions": ["gomodTidy"]
     },
     {
       "matchManagers": ["github-actions"],
