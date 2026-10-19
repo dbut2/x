@@ -66,7 +66,6 @@ jobs:
         run: go run ./workflow-sync render "${{ matrix.repo }}" target
 
       - name: Diff
-        if: github.event_name == 'pull_request'
         env:
           REPO: ${{ matrix.repo }}
         working-directory: target
