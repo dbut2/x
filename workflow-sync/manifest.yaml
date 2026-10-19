@@ -2,7 +2,6 @@ bundles:
   go-quality:
     files:
       - quality-go.yaml
-      - renovate-generate.yaml
     checks:
       - Go Quality
   compose:
@@ -16,12 +15,16 @@ bundles:
   publish:
     files:
       - publish.yaml
+  renovate-generate:
+    files:
+      - renovate-generate.yaml
 
 targets:
   dbut2/x:
     bundles:
       - automerge
       - go-quality
+      - renovate-generate
   dbut2/bolt:
     bundles:
       - go-quality
