@@ -29,16 +29,9 @@ jobs:
 
       - run: go generate ./...
 
-      - id: commit
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: go generate
           commit_user_name: dylan-botler[bot]
           commit_user_email: 230545208+dylan-botler[bot]@users.noreply.github.com
           commit_author: dylan-botler[bot] <230545208+dylan-botler[bot]@users.noreply.github.com>
-
-      - if: steps.commit.outputs.changes_detected == 'true'
-        run: gh pr edit "$PR_URL" --add-label automerge
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.token.outputs.token }}
