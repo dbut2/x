@@ -11,10 +11,20 @@
   },
   "packageRules": [
     {
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "groupName": "all dependencies",
-      "groupSlug": "all"
+      "matchManagers": ["gomod"],
+      "groupName": "go dependencies",
+      "groupSlug": "go",
+      "postUpdateOptions": ["gomodTidy"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "groupSlug": "github-actions"
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "npm dependencies",
+      "groupSlug": "npm"
     }
   ],
   "baseBranchPatterns": ["main"]
