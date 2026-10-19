@@ -2,6 +2,7 @@ bundles:
   go-quality:
     files:
       - quality-go.yaml
+      - renovate-generate.yaml
     checks:
       - Go Quality
   compose:

@@ -4,6 +4,7 @@
     "config:recommended"
   ],
   "schedule": ["on monday"],
+  "gitIgnoredAuthors": ["230545208+dylan-botler[bot]@users.noreply.github.com"],
   "github-actions": {
     "managerFilePatterns": [
       "/^workflow-sync/workflows/.+\\.ya?ml$/"
