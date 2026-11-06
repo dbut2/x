@@ -44,7 +44,7 @@ jobs:
           target_sha: ${{ steps.pr-sha.outputs.sha }}
           initial_delay_seconds: 0
           poll_frequency_seconds: 10
-          missing_required_retry_count: 10
+          missing_required_retry_count: [[ .Retries ]]
 
 [[ end ]]      - name: Enable auto-merge
         uses: nick-fields/retry@v4
