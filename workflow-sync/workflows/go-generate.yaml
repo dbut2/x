@@ -1,0 +1,46 @@
+name: Go Generate
+
+on:
+  schedule:
+    - cron: '0 17 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: [[ .RunsOn ]]
+    steps:
+      - name: Generate token
+        id: token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.GH_CLIENT_ID }}
+          private-key: ${{ secrets.GH_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ steps.token.outputs.token }}
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: [[ index .Modules 0 ]]/go.mod
+[[- range .Modules ]]
+
+      - working-directory: [[ . ]]
+        run: |
+          go generate ./...
+          go mod tidy
+[[- end ]]
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ steps.token.outputs.token }}
+          branch: tech/generate
+          delete-branch: true
+          labels: automerge
+          commit-message: "tech: generate"
+          title: "tech: generate"
+          author: dylan-botler[bot] <230545208+dylan-botler[bot]@users.noreply.github.com>
+          committer: dylan-botler[bot] <230545208+dylan-botler[bot]@users.noreply.github.com>

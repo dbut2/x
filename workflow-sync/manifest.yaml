@@ -18,6 +18,9 @@ bundles:
   renovate-generate:
     files:
       - renovate-generate.yaml
+  go-generate:
+    files:
+      - go-generate.yaml
 
 always:
   - automerge
@@ -36,16 +39,18 @@ targets:
     bundles:
       - go-quality
       - compose
+      - go-generate
     gomods:
       - go/go.mod
       - tools/go.mod
-    checks:
-      - Gen Gate
+    remove:
+      - quality-gen.yaml
   dbut2/commuter:
     bundles:
       - go-quality
       - compose
       - publish
+      - go-generate
   dbut2/cordial:
     bundles:
       - go-quality
