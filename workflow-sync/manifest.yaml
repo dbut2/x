@@ -19,11 +19,13 @@ bundles:
     files:
       - renovate-generate.yaml
 
+always:
+  - automerge
+
 targets:
   dbut2/bolt:
     bundles:
       - go-quality
-      - automerge
   dbut2/butla:
     bundles:
       - go-quality
@@ -34,7 +36,6 @@ targets:
     bundles:
       - go-quality
       - compose
-      - automerge
     gomods:
       - go/go.mod
       - tools/go.mod
@@ -44,12 +45,10 @@ targets:
     bundles:
       - go-quality
       - compose
-      - automerge
       - publish
   dbut2/cordial:
     bundles:
       - go-quality
-      - automerge
       - publish
     runs-on: self-hosted
   dbut2/example:
@@ -61,25 +60,25 @@ targets:
     bundles:
       - go-quality
       - compose
-      - automerge
       - publish
   dbut2/nebula:
-    bundles:
-      - automerge
     checks:
       - Go Test
       - golangci-lint
     runs-on: self-hosted
     retries: 100
     branch: main
+  dbut2/sapphire:
+    checks:
+      - Go Test
+      - golangci-lint
+      - Build Check
   dbut2/web-template:
     bundles:
       - go-quality
       - compose
-      - automerge
       - publish
   dbut2/x:
     bundles:
-      - automerge
       - go-quality
       - renovate-generate
