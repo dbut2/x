@@ -20,28 +20,27 @@ bundles:
       - renovate-generate.yaml
 
 targets:
-  dbut2/x:
-    bundles:
-      - automerge
-      - go-quality
-      - renovate-generate
   dbut2/bolt:
     bundles:
       - go-quality
       - automerge
+  dbut2/butla:
+    bundles:
+      - go-quality
+    remove:
+      - quality.yaml
+      - codeql-analysis.yml
+  dbut2/coach:
+    bundles:
+      - go-quality
+      - compose
+      - automerge
+    gomods:
+      - go/go.mod
+      - tools/go.mod
+    checks:
+      - Gen Gate
   dbut2/commuter:
-    bundles:
-      - go-quality
-      - compose
-      - automerge
-      - publish
-  dbut2/float:
-    bundles:
-      - go-quality
-      - compose
-      - automerge
-      - publish
-  dbut2/web-template:
     bundles:
       - go-quality
       - compose
@@ -53,27 +52,17 @@ targets:
       - automerge
       - publish
     runs-on: self-hosted
-  dbut2/coach:
-    bundles:
-      - go-quality
-      - compose
-      - automerge
-    gomods:
-      - go/go.mod
-      - tools/go.mod
-    checks:
-      - Gen Gate
   dbut2/example:
     bundles:
       - go-quality
     remove:
       - quality.yaml
-  dbut2/butla:
+  dbut2/float:
     bundles:
       - go-quality
-    remove:
-      - quality.yaml
-      - codeql-analysis.yml
+      - compose
+      - automerge
+      - publish
   dbut2/nebula:
     bundles:
       - automerge
@@ -83,3 +72,14 @@ targets:
     runs-on: self-hosted
     retries: 100
     branch: main
+  dbut2/web-template:
+    bundles:
+      - go-quality
+      - compose
+      - automerge
+      - publish
+  dbut2/x:
+    bundles:
+      - automerge
+      - go-quality
+      - renovate-generate
