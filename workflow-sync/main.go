@@ -3,7 +3,9 @@ package main
 import (
 	"embed"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"path"
 	"path/filepath"
@@ -28,6 +30,8 @@ type target struct {
 	Bundles []string `yaml:"bundles"`
 	Checks  []string `yaml:"checks"`
 	Gomod   string   `yaml:"gomod"`
+	Gomods  []string `yaml:"gomods"`
+	Remove  []string `yaml:"remove"`
 	RunsOn  string   `yaml:"runs-on"`
 	Retries int      `yaml:"retries"`
 	Branch  string   `yaml:"branch"`
@@ -132,11 +136,26 @@ func render(m manifest, repo, out string) {
 	if retries == 0 {
 		retries = 10
 	}
+	if t.Gomod != "" && len(t.Gomods) > 0 {
+		panic("target sets both gomod and gomods: " + repo)
+	}
 	gomod := t.Gomod
+	if len(t.Gomods) == 1 {
+		gomod = t.Gomods[0]
+	}
 	if gomod == "" {
 		gomod = "go.mod"
 	}
-	data := map[string]any{"Checks": checks, "Gomod": gomod, "GomodDir": path.Dir(gomod), "RunsOn": runsOn, "Retries": retries}
+	gomodDir := path.Dir(gomod)
+	var dirs []string
+	if len(t.Gomods) > 1 {
+		for _, g := range t.Gomods {
+			dirs = append(dirs, path.Dir(g))
+		}
+		gomod = "${{ matrix.dir }}/go.mod"
+		gomodDir = "${{ matrix.dir }}"
+	}
+	data := map[string]any{"Checks": checks, "Gomod": gomod, "GomodDir": gomodDir, "Dirs": dirs, "RunsOn": runsOn, "Retries": retries}
 
 	dst := filepath.Join(out, ".github", "workflows")
 	if err := os.MkdirAll(dst, 0o755); err != nil {
@@ -150,6 +169,20 @@ func render(m manifest, repo, out string) {
 			rendered[file] = true
 			fmt.Fprintln(os.Stderr, "rendered", repo, "→", file)
 		}
+	}
+
+	for _, file := range t.Remove {
+		if rendered[file] {
+			panic("remove lists a rendered file: " + file)
+		}
+		err := os.Remove(filepath.Join(dst, file))
+		if errors.Is(err, fs.ErrNotExist) {
+			continue
+		}
+		if err != nil {
+			panic(err)
+		}
+		fmt.Fprintln(os.Stderr, "removed", repo, "→", file)
 	}
 
 	entries, err := os.ReadDir(dst)
