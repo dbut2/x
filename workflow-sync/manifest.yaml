@@ -34,11 +34,13 @@ targets:
       - go-quality
       - compose
       - automerge
+      - publish
   dbut2/float:
     bundles:
       - go-quality
       - compose
       - automerge
+      - publish
   dbut2/web-template:
     bundles:
       - go-quality
@@ -53,11 +55,25 @@ targets:
     runs-on: self-hosted
   dbut2/coach:
     bundles:
+      - go-quality
+      - compose
       - automerge
+    gomods:
+      - go/go.mod
+      - tools/go.mod
     checks:
-      - Docker Compose
       - Gen Gate
-      - Go Gate
+  dbut2/example:
+    bundles:
+      - go-quality
+    remove:
+      - quality.yaml
+  dbut2/butla:
+    bundles:
+      - go-quality
+    remove:
+      - quality.yaml
+      - codeql-analysis.yml
   dbut2/nebula:
     bundles:
       - automerge
