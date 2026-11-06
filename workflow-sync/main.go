@@ -44,6 +44,7 @@ type bundle struct {
 
 type manifest struct {
 	Bundles map[string]bundle `yaml:"bundles"`
+	Always  []string          `yaml:"always"`
 	Targets map[string]target `yaml:"targets"`
 }
 
@@ -110,8 +111,14 @@ func render(m manifest, repo, out string) {
 		panic("unknown target: " + repo)
 	}
 
-	bundles := make([]bundle, 0, len(t.Bundles))
 	for _, name := range t.Bundles {
+		if slices.Contains(m.Always, name) {
+			panic("target lists an always bundle: " + repo + " " + name)
+		}
+	}
+	names := append(slices.Clone(m.Always), t.Bundles...)
+	bundles := make([]bundle, 0, len(names))
+	for _, name := range names {
 		b, ok := m.Bundles[name]
 		if !ok {
 			panic("unknown bundle: " + name)
