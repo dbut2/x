@@ -80,7 +80,8 @@ Also the hype adjectives that do sales work: powerful, blazing-fast, lightning-f
 
 - **No single marker is proof, and the aim isn't a clean detector score.** Humans use em dashes, triads, and "delve" naturally. The tell is *saturation and uniformity*, not any one instance. Fixing the voice matters; gaming a detector doesn't.
 - **Don't just file the serial numbers off.** Swapping an em dash for a spaced hyphen, or "delve" for "explore", while keeping the uniform rhythm and hollow balance, still reads as AI. Fix the underlying reflex.
-- For Dylan specifically the em-dash rule is a hard *no*, because he genuinely never uses them (verified across his whole blog). That's a personal signature, not the general "cap it" advice.
+- For Dylan specifically the em-dash rule is a hard *no*, because he genuinely never uses them (verified across everything he has hand-typed). His site does now contain machine-published text with em dashes (bot-posted travel entries, assisted posts); that text is not the model. See `corpus.md` for how to authenticate a sample before imitating it.
+- Dylan-specific tells beyond the general list: uncontracted copulas ("It is easy to view"), flawless spelling with zero loose grammar, US spellings ("behavior", "utilize"), Title Case headers, and section scaffolding on a short post. Any of these mean the text wasn't his hand, even if it's published under his name.
 
 ## What actually reads as human (aim for these, not just away from the tells)
 
