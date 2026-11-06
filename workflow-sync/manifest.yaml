@@ -54,7 +54,6 @@ targets:
   dbut2/cordial:
     bundles:
       - go-quality
-      - publish
     runs-on: self-hosted
   dbut2/example:
     bundles:
