@@ -154,15 +154,17 @@ func render(m manifest, repo, out string) {
 		gomod = "go.mod"
 	}
 	gomodDir := path.Dir(gomod)
+	modules := []string{gomodDir}
 	var dirs []string
 	if len(t.Gomods) > 1 {
 		for _, g := range t.Gomods {
 			dirs = append(dirs, path.Dir(g))
 		}
+		modules = dirs
 		gomod = "${{ matrix.dir }}/go.mod"
 		gomodDir = "${{ matrix.dir }}"
 	}
-	data := map[string]any{"Checks": checks, "Gomod": gomod, "GomodDir": gomodDir, "Dirs": dirs, "RunsOn": runsOn, "Retries": retries}
+	data := map[string]any{"Checks": checks, "Gomod": gomod, "GomodDir": gomodDir, "Dirs": dirs, "Modules": modules, "RunsOn": runsOn, "Retries": retries}
 
 	dst := filepath.Join(out, ".github", "workflows")
 	if err := os.MkdirAll(dst, 0o755); err != nil {
