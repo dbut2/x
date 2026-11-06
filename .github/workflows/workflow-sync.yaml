@@ -59,6 +59,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           repository: ${{ matrix.repo }}
+          ref: ${{ matrix.branch }}
           token: ${{ steps.token.outputs.token }}
           path: target
 
@@ -91,6 +92,7 @@ jobs:
           path: target
           token: ${{ steps.token.outputs.token }}
           branch: workflow-sync
+          base: ${{ matrix.branch }}
           delete-branch: true
           labels: automerge
           commit-message: Sync workflows from dbut2/x

@@ -30,6 +30,7 @@ type target struct {
 	Gomod   string   `yaml:"gomod"`
 	RunsOn  string   `yaml:"runs-on"`
 	Retries int      `yaml:"retries"`
+	Branch  string   `yaml:"branch"`
 }
 
 type bundle struct {
@@ -78,7 +79,15 @@ func list(m manifest, asJSON bool) {
 	slices.Sort(repos)
 
 	if asJSON {
-		b, err := json.Marshal(map[string][]string{"repo": repos})
+		type entry struct {
+			Repo   string `json:"repo"`
+			Branch string `json:"branch,omitempty"`
+		}
+		include := make([]entry, 0, len(repos))
+		for _, repo := range repos {
+			include = append(include, entry{Repo: repo, Branch: m.Targets[repo].Branch})
+		}
+		b, err := json.Marshal(map[string][]entry{"include": include})
 		if err != nil {
 			panic(err)
 		}
