@@ -66,3 +66,4 @@ targets:
       - golangci-lint
     runs-on: self-hosted
     retries: 100
+    branch: main
