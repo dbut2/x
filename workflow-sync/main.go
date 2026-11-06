@@ -29,6 +29,7 @@ type target struct {
 	Checks  []string `yaml:"checks"`
 	Gomod   string   `yaml:"gomod"`
 	RunsOn  string   `yaml:"runs-on"`
+	Retries int      `yaml:"retries"`
 }
 
 type bundle struct {
@@ -118,11 +119,15 @@ func render(m manifest, repo, out string) {
 	if runsOn == "" {
 		runsOn = "ubuntu-latest"
 	}
+	retries := t.Retries
+	if retries == 0 {
+		retries = 10
+	}
 	gomod := t.Gomod
 	if gomod == "" {
 		gomod = "go.mod"
 	}
-	data := map[string]any{"Checks": checks, "Gomod": gomod, "GomodDir": path.Dir(gomod), "RunsOn": runsOn}
+	data := map[string]any{"Checks": checks, "Gomod": gomod, "GomodDir": path.Dir(gomod), "RunsOn": runsOn, "Retries": retries}
 
 	dst := filepath.Join(out, ".github", "workflows")
 	if err := os.MkdirAll(dst, 0o755); err != nil {

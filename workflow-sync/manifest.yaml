@@ -58,3 +58,11 @@ targets:
       - Docker Compose
       - Gen Gate
       - Go Gate
+  dbut2/nebula:
+    bundles:
+      - automerge
+    checks:
+      - Go Test
+      - golangci-lint
+    runs-on: self-hosted
+    retries: 100
