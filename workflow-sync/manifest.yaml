@@ -61,6 +61,7 @@ targets:
     remove:
       - quality.yaml
   dbut2/float:
+    runs-on: self-hosted
     bundles:
       - go-quality
       - compose
