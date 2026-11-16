@@ -65,6 +65,7 @@ targets:
       - go-quality
       - compose
       - publish
+    runs-on: self-hosted
   dbut2/nebula:
     checks:
       - Go Test
