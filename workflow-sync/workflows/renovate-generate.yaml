@@ -3,13 +3,13 @@ name: Renovate Generate
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   generate:
     runs-on: [[ .RunsOn ]]
     if: github.actor == 'renovate[bot]'
-    defaults:
-      run:
-        working-directory: [[ .GomodDir ]]
     steps:
       - name: Generate token
         id: token
@@ -25,9 +25,12 @@ jobs:
 
       - uses: actions/setup-go@v7
         with:
-          go-version-file: [[ .Gomod ]]
+          go-version-file: [[ index .Modules 0 ]]/go.mod
+[[- range .Modules ]]
 
-      - run: go generate ./...
+      - working-directory: [[ . ]]
+        run: go generate ./...
+[[- end ]]
 
       - id: commit
         uses: stefanzweifel/git-auto-commit-action@v7

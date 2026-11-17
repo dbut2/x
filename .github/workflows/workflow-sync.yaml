@@ -98,5 +98,5 @@ jobs:
           commit-message: Sync workflows from dbut2/x
           title: Sync workflows from dbut2/x
           body: beep boop beep boop, I've updated some workflows for you
-          author: dylan-botler[bot] <dylan-botler[bot]@users.noreply.github.com>
-          committer: dylan-botler[bot] <dylan-botler[bot]@users.noreply.github.com>
+          author: dylan-botler[bot] <230545208+dylan-botler[bot]@users.noreply.github.com>
+          committer: dylan-botler[bot] <230545208+dylan-botler[bot]@users.noreply.github.com>

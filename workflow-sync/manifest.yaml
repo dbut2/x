@@ -26,35 +26,48 @@ always:
   - automerge
 
 targets:
+  dbut2/advent-of-code:
+    bundles:
+      - go-quality
+    remove:
+      - quality.yaml
   dbut2/bolt:
     bundles:
       - go-quality
   dbut2/butla:
     bundles:
       - go-quality
+      - publish
     remove:
       - quality.yaml
       - codeql-analysis.yml
+      - build.yaml
   dbut2/coach:
     bundles:
       - go-quality
       - compose
+      - publish
       - go-generate
+      - renovate-generate
     gomods:
       - go/go.mod
       - tools/go.mod
     remove:
       - quality-gen.yaml
+      - release.yaml
   dbut2/commuter:
     bundles:
       - go-quality
       - compose
       - publish
       - go-generate
+      - renovate-generate
   dbut2/cordial:
     bundles:
       - go-quality
+      - renovate-generate
     runs-on: self-hosted
+  dbut2/dbut2.github.io: {}
   dbut2/example:
     bundles:
       - go-quality
@@ -66,6 +79,9 @@ targets:
       - go-quality
       - compose
       - publish
+      - renovate-generate
+  dbut2/gaymian:
+    runs-on: self-hosted
   dbut2/nebula:
     checks:
       - Go Test
@@ -83,6 +99,7 @@ targets:
       - go-quality
       - compose
       - publish
+      - renovate-generate
   dbut2/x:
     bundles:
       - go-quality
