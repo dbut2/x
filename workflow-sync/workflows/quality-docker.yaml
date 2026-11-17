@@ -16,4 +16,9 @@ jobs:
     runs-on: [[ .RunsOn ]]
     steps:
       - uses: actions/checkout@v7
+[[- if eq .RunsOn "self-hosted" ]]
+      - run: docker buildx create --use --driver remote "$BUILDKIT_HOST"
+      - run: docker buildx bake
+[[- else ]]
       - run: docker compose build
+[[- end ]]

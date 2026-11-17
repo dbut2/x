@@ -24,11 +24,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+[[- if eq .RunsOn "self-hosted" ]]
+
+      - name: Use remote builder
+        run: docker buildx create --use --driver remote "$BUILDKIT_HOST"
+[[- else ]]
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
+[[- end ]]
 
       - name: Build and push image
         uses: docker/build-push-action@v7
