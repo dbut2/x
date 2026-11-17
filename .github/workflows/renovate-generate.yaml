@@ -6,13 +6,13 @@ name: Renovate Generate
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   generate:
     runs-on: ubuntu-latest
     if: github.actor == 'renovate[bot]'
-    defaults:
-      run:
-        working-directory: .
     steps:
       - name: Generate token
         id: token
@@ -28,9 +28,10 @@ jobs:
 
       - uses: actions/setup-go@v7
         with:
-          go-version-file: go.mod
+          go-version-file: ./go.mod
 
-      - run: go generate ./...
+      - working-directory: .
+        run: go generate ./...
 
       - id: commit
         uses: stefanzweifel/git-auto-commit-action@v7
