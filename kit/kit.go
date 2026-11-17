@@ -11,6 +11,8 @@ import (
 	"github.com/a-h/templ"
 )
 
+//go:generate go tool templ generate
+
 // Tone is the daisyUI semantic colour of an element.
 type Tone string
 

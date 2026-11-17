@@ -1,32 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "github>dbut2/x"
   ],
-  "schedule": ["on monday"],
-  "gitIgnoredAuthors": ["230545208+dylan-botler[bot]@users.noreply.github.com"],
   "github-actions": {
     "managerFilePatterns": [
       "/^workflow-sync/workflows/.+\\.ya?ml$/"
     ]
   },
-  "packageRules": [
-    {
-      "matchManagers": ["gomod"],
-      "groupName": "go dependencies",
-      "groupSlug": "go",
-      "postUpdateOptions": ["gomodTidy"]
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "groupName": "github actions",
-      "groupSlug": "github-actions"
-    },
-    {
-      "matchManagers": ["npm"],
-      "groupName": "npm dependencies",
-      "groupSlug": "npm"
-    }
-  ],
   "baseBranchPatterns": ["main"]
 }
