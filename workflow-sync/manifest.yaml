@@ -43,6 +43,7 @@ targets:
       - codeql-analysis.yml
       - build.yaml
   dbut2/coach:
+    runs-on: self-hosted
     bundles:
       - go-quality
       - compose
