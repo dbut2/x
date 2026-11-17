@@ -5,7 +5,7 @@
   ],
   "dependencyDashboard": false,
   "timezone": "Australia/Melbourne",
-  "schedule": ["on monday"],
+  "schedule": ["* 0-6 * * *"],
   "gitIgnoredAuthors": ["230545208+dylan-botler[bot]@users.noreply.github.com"],
   "packageRules": [
     {
