@@ -16,9 +16,6 @@ import (
 	"github.com/goccy/go-yaml"
 )
 
-//go:embed manifest.yaml
-var manifestData []byte
-
 //go:embed workflows
 var workflows embed.FS
 
@@ -49,28 +46,32 @@ type manifest struct {
 }
 
 func main() {
-	if len(os.Args) < 2 {
-		panic("usage: workflow-sync <list|render> [args]")
+	if len(os.Args) < 3 {
+		panic("usage: workflow-sync <manifest> <list|render> [args]")
 	}
 
-	m := load()
+	m := load(os.Args[1])
 
-	switch os.Args[1] {
+	switch os.Args[2] {
 	case "list":
-		list(m, slices.Contains(os.Args[2:], "--json"))
+		list(m, slices.Contains(os.Args[3:], "--json"))
 	case "render":
-		if len(os.Args) < 4 {
-			panic("usage: workflow-sync render <repo> <outdir>")
+		if len(os.Args) < 5 {
+			panic("usage: workflow-sync <manifest> render <repo> <outdir>")
 		}
-		render(m, os.Args[2], os.Args[3])
+		render(m, os.Args[3], os.Args[4])
 	default:
-		panic("unknown command: " + os.Args[1])
+		panic("unknown command: " + os.Args[2])
 	}
 }
 
-func load() manifest {
+func load(file string) manifest {
+	b, err := os.ReadFile(file)
+	if err != nil {
+		panic(err)
+	}
 	var m manifest
-	if err := yaml.Unmarshal(manifestData, &m); err != nil {
+	if err := yaml.Unmarshal(b, &m); err != nil {
 		panic(err)
 	}
 	return m
