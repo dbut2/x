@@ -12,7 +12,12 @@
       "matchManagers": ["gomod"],
       "groupName": "go dependencies",
       "groupSlug": "go",
-      "postUpdateOptions": ["gomodTidy"]
+      "postUpdateOptions": ["gomodTidy", "gomodUpdateImportPaths"]
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchUpdateTypes": ["digest"],
+      "enabled": false
     },
     {
       "matchManagers": ["github-actions"],
@@ -23,6 +28,10 @@
       "matchManagers": ["npm"],
       "groupName": "npm dependencies",
       "groupSlug": "npm"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": null
     }
   ]
 }
